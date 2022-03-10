@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/titleTV"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/marginMedium"
+        android:layout_marginTop="@dimen/marginLarge"
+        android:textColor="@color/black"
+        android:gravity="center"
+        android:textSize="@dimen/textLargeSize"
+        android:layout_marginEnd="@dimen/marginMedium"
+        android:text="@string/app_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/questionBTN"
+        style="@style/StandartButton"
+        android:layout_width="0dp"
+        android:text="@string/question_button"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/marginMedium"
+        android:layout_marginEnd="@dimen/marginMedium"
+        android:layout_marginTop="@dimen/marginLarge"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titleTV" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/sendQuestionBTN"
+        style="@style/StandartButton"
+        android:layout_width="0dp"
+        android:text="@string/sendquestion_button"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/marginMedium"
+        android:layout_marginTop="@dimen/marginMedium"
+        android:layout_marginEnd="@dimen/marginMedium"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/questionBTN" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/lectureBTN"
+        style="@style/SecondaryButton"
+        android:layout_width="0dp"
+        android:text="@string/lecture_button"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/marginMedium"
+        android:layout_marginEnd="@dimen/marginMedium"
+        android:layout_marginTop="@dimen/marginMedium"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sendQuestionBTN" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="textLargeSize">32sp</dimen>
+
+    <dimen name="marginSmall">32dp</dimen>
+    <dimen name="marginMedium">64dp</dimen>
+    <dimen name="marginLarge">128dp</dimen>
+
+    <dimen name="paddingSmall">8dp</dimen>
+    <dimen name="paddingMedium">16dp</dimen>
+    <dimen name="paddingLarge">32dp</dimen>
+
+    <dimen name="button_corner_radius">100dp</dimen>
+
+
+</resources>

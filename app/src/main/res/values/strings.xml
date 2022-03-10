@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Hocam</string>
+
+
+    <!-- Home Page -->
+    <string name="question_button">Sorular</string>
+    <string name="lecture_button">Konular</string>
+    <string name="sendquestion_button">Soru Gönder</string>
+
+
+    <!-- Send Question -->
+    <string name="upload_button">Soruyu Gönder</string>
+
+</resources>
