@@ -7,6 +7,7 @@ import com.dag.hocam.application.HocamActivity
 import com.dag.hocam.application.HocamVS
 import com.dag.hocam.databinding.ActivitySplashBinding
 import com.dag.hocam.ui.home.HomeActivity
+import com.dag.hocam.ui.useroperation.UserOperationActivity
 import javax.inject.Inject
 
 class SplashActivity: HocamActivity<SplashVM,ActivitySplashBinding>() {
@@ -25,7 +26,7 @@ class SplashActivity: HocamActivity<SplashVM,ActivitySplashBinding>() {
     override fun onStateChange(state: HocamVS) {
         when(state){
             SplashVS.StartApplication ->{
-                startActivity(HomeActivity::class.java)
+                startActivity(UserOperationActivity::class.java)
             }
         }
     }

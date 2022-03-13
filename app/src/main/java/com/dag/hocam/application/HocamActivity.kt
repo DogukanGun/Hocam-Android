@@ -40,6 +40,37 @@ abstract class HocamActivity<VM:HocamVM,DB: ViewDataBinding>:AppCompatActivity()
             }
         }
     }
+    override fun onBackPressed() {
+        val result = back()
+        if (result == -1){
+            super.onBackPressed()
+        }
+    }
+
+    fun getCurrentFragment():HocamFragment<*,*>?{
+        val currentFragment = supportFragmentManager.findFragmentById(getContainerId())
+        if (currentFragment != null){
+            return  currentFragment as HocamFragment<*, *>
+        }
+        return null
+    }
+
+    private fun back():Int{
+        val currentFragment = getCurrentFragment()
+        if (currentFragment != null){
+            val fragmentTransaction = supportFragmentManager.beginTransaction()
+            fragmentTransaction.remove(currentFragment)
+            fragmentTransaction.commitAllowingStateLoss()
+            supportFragmentManager.popBackStackImmediate()
+            if (supportFragmentManager.backStackEntryCount == 0) {
+                return -1
+            }
+            return 0
+        }else{
+            return -1
+        }
+
+    }
 
     fun addFragment(fragment: HocamFragment<*,*>){
         val fragmentTransaction = supportFragmentManager.beginTransaction()

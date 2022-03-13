@@ -24,6 +24,15 @@
         <activity
             android:exported="true"
             android:name=".ui.askquestion.AskQuestionActivity"/>
+        <activity
+            android:name=".ui.quiz.QuizActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".ui.topic.TopicActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".ui.useroperation.UserOperationActivity"
+            android:exported="false"/>
     </application>
 
 </manifest>

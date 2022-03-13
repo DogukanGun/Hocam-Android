@@ -1,6 +1,16 @@
 <resources>
     <string name="app_name">Hocam</string>
 
+    <!-- UserOperation Page -->
+    <string name="login">Giriş Yap</string>
+    <string name="register">Kayıt Ol</string>
+    <string name="username">Kullanıcı Adı</string>
+    <string name="email">Email</string>
+    <string name="password">Şifre</string>
+    <string name="change_to_register">Hey yeni bir üyelik açmak ister misin ?</string>
+    <string name="change_to_login">Hey giriş mi yapmak istiyorsun ?</string>
+
+
 
     <!-- Home Page -->
     <string name="question_button">Sorular</string>
@@ -8,7 +18,7 @@
     <string name="sendquestion_button">Soru Gönder</string>
 
 
-    <!-- Send Question -->
+    <!-- Send QuestionRequest -->
     <string name="upload_button">Soruyu Gönder</string>
 
 </resources>

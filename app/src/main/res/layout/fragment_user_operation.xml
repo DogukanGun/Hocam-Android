@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/titleTV"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/marginMedium"
+        android:layout_marginTop="@dimen/marginMedium"
+        android:layout_marginEnd="@dimen/marginMedium"
+        android:text="@string/login"
+        android:textSize="@dimen/textLargeSize"
+        android:textColor="@color/black"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/usernameET"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/marginMedium"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="@string/username"
+        app:layout_constraintEnd_toEndOf="@+id/titleTV"
+        app:layout_constraintStart_toStartOf="@+id/titleTV"
+        app:layout_constraintTop_toBottomOf="@+id/titleTV" />
+
+    <EditText
+        android:id="@+id/emailET"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/marginMedium"
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        android:text="@string/email"
+        app:layout_constraintEnd_toEndOf="@+id/usernameET"
+        app:layout_constraintStart_toStartOf="@+id/usernameET"
+        app:layout_constraintTop_toBottomOf="@+id/usernameET" />
+
+    <EditText
+        android:id="@+id/passwordET"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/marginMedium"
+        android:ems="10"
+        android:inputType="numberPassword"
+        android:text="@string/password"
+        app:layout_constraintEnd_toEndOf="@+id/emailET"
+        app:layout_constraintStart_toStartOf="@+id/emailET"
+        app:layout_constraintTop_toBottomOf="@+id/emailET" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/operationButtonBTN"
+        style="@style/StandartButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/marginMedium"
+        android:text="@string/login"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/passwordET"
+        app:layout_constraintStart_toStartOf="@+id/passwordET" />
+
+    <Button
+        android:id="@+id/changeOperationTypeBTN"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/marginSmall"
+        android:backgroundTint="@color/white"
+        android:padding="0dp"
+        android:background="@android:color/transparent"
+
+        android:elevation="0dp"
+        android:gravity="start|center_vertical"
+        android:text="@string/change_to_register"
+        android:textColor="@color/black"
+        android:textSize="@dimen/textSmallSize"
+        app:layout_constraintEnd_toEndOf="@+id/passwordET"
+        app:layout_constraintStart_toStartOf="@+id/passwordET"
+        app:layout_constraintTop_toBottomOf="@+id/passwordET" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
