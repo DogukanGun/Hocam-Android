@@ -83,7 +83,7 @@ class UserOperationFragment: HocamFragment<UserOperationFragmentVM,FragmentUserO
 
     private fun register(){
         val registerRequest = RegisterRequest(binding?.usernameET?.text.toString(),binding?.passwordET?.text.toString(),
-            "", binding?.emailET?.text.toString())
+            "test", binding?.emailET?.text.toString())
         viewModel?.register(registerRequest)
     }
 }

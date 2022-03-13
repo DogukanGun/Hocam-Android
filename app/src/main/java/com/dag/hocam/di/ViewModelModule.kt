@@ -1,5 +1,6 @@
 package com.dag.hocam.di
 
+import com.dag.hocam.application.HocamSessionManager
 import com.dag.hocam.network.ApiSource
 import com.dag.hocam.ui.askquestion.AskQuestionActivityVM
 import com.dag.hocam.ui.askquestion.AskQuestionFragmentVM
@@ -50,5 +51,6 @@ class ViewModelModule {
     fun provideUserOperationActivityVM() = UserOperationActivityVM()
 
     @Provides
-    fun provideUserOperationFragmentVM(apiSource: ApiSource) = UserOperationFragmentVM(apiSource)
+    fun provideUserOperationFragmentVM(apiSource: ApiSource,sessionManager: HocamSessionManager) =
+        UserOperationFragmentVM(apiSource,sessionManager)
 }

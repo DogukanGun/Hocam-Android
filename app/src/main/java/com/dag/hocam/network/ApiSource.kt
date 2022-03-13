@@ -12,35 +12,37 @@ import com.dag.hocam.data.topic.TopicResponse
 import com.dag.hocam.data.user.AuthenticationResponse
 import com.dag.hocam.data.user.LoginRequest
 import com.dag.hocam.data.user.RegisterRequest
+import io.reactivex.Observable
+import retrofit2.Response
 
 interface ApiSource {
 
-    fun addTopic(addTopicRequest: AddTopicRequest): TopicResponse
+     fun addTopic(addTopicRequest: AddTopicRequest): Observable<TopicResponse>
 
-    fun addSubject(addSubjectRequest: AddSubjectRequest): AddSubjectRequest
+     fun addSubject(addSubjectRequest: AddSubjectRequest): Observable<AddSubjectRequest>
 
-    fun addQuiz(addQuizRequest: AddQuizRequest)
+     fun addQuiz(addQuizRequest: AddQuizRequest)
 
-    fun addQuestion(addQuestionRequest: AddQuestionRequest)
+     fun addQuestion(addQuestionRequest: AddQuestionRequest)
 
-    fun getAllTopics(): GetAllTopicResponse
+     fun getAllTopics(): Observable<GetAllTopicResponse>
 
-    fun getAllTopicsByName(name: String): GetAllTopicResponse
+     fun getAllTopicsByName(name: String): Observable<GetAllTopicResponse>
 
-    fun getAllQuizzes(): Quiz
+     fun getAllQuizzes(): Observable<Quiz>
 
-    fun completeQuiz(completeQuizRequest: CompleteQuizRequest): CompleteQuizRequest
+     fun completeQuiz(completeQuizRequest: CompleteQuizRequest): Observable<CompleteQuizRequest>
 
-    fun getQuizzesByName(quizName: String): List<Quiz>
+     fun getQuizzesByName(quizName: String): Observable<List<Quiz>>
 
-    fun login(loginRequest: LoginRequest): AuthenticationResponse
+     fun login(loginRequest: LoginRequest): Observable<AuthenticationResponse>
 
-    fun register(registerRequest: RegisterRequest): AuthenticationResponse
+     fun register(registerRequest: RegisterRequest): Observable<AuthenticationResponse>
 
-    fun getAllSubject(): List<AddSubjectRequest>
+     fun getAllSubject(): Observable<List<AddSubjectRequest>>
 
-    fun getAllSubjectByName(name: String): List<AddSubjectRequest>
+     fun getAllSubjectByName(name: String): Observable<List<AddSubjectRequest>>
 
-    fun getAllSubjectQuestionsBySubjectName(name: String): List<AddExampleQuestionRequest>
+     fun getAllSubjectQuestionsBySubjectName(name: String): Observable<List<AddExampleQuestionRequest>>
 
 }
