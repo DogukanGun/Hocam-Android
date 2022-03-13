@@ -25,5 +25,6 @@
 
     <!-- Send QuestionRequest -->
     <string name="upload_button">Soruyu Gönder</string>
+    <string name="upload_text">Sorunu Yükle</string>
 
 </resources>

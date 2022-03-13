@@ -2,6 +2,7 @@ package com.dag.hocam.ui.useroperation
 
 import io.reactivex.Observer
 import androidx.lifecycle.viewModelScope
+import com.dag.hocam.application.Constant
 import com.dag.hocam.application.HocamSessionManager
 import com.dag.hocam.application.HocamVM
 import com.dag.hocam.data.session.SessionKey
@@ -61,6 +62,7 @@ class UserOperationFragmentVM @Inject constructor(
                             t.data?.token?.let { token = it }
                             var userType = ""
                             t.data?.userType?.let { userType = it }
+                            Constant.token = token
                             sessionManager.putData(SessionKey.TOKEN.name,token)
                             sessionManager.putData(SessionKey.USERTYPE.name,userType)
                             state.postValue(UserOperationFragmentVS.StartApplication)

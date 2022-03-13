@@ -39,6 +39,7 @@ class NetworkModule {
                     .build()
             )
             .addInterceptor(logger)
+            .addInterceptor(interceptor)
             .build()
         return Retrofit.Builder()
             .baseUrl(Constant.url)

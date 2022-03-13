@@ -39,13 +39,13 @@ class ViewModelModule {
     fun provideQuizActivityVM() = QuizActivityVM()
 
     @Provides
-    fun provideQuizFragmentVM() = QuizFragmentVM()
+    fun provideQuizFragmentVM(apiSource: ApiSource) = QuizFragmentVM(apiSource)
 
     @Provides
     fun provideTopicActivityVM() = TopicActivityVM()
 
     @Provides
-    fun provideTopicFragmentVM() = TopicFragmentVM()
+    fun provideTopicFragmentVM(apiSource: ApiSource) = TopicFragmentVM(apiSource)
 
     @Provides
     fun provideUserOperationActivityVM() = UserOperationActivityVM()

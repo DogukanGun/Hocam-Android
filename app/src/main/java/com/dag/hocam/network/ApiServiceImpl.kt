@@ -35,7 +35,7 @@ class ApiServiceImpl @Inject constructor(retrofit:Retrofit): ApiSource {
         apiService.addQuestion(addQuestionRequest)
     }
 
-    override  fun getAllTopics(): Observable<GetAllTopicResponse> {
+    override  fun getAllTopics(): Observable<List<GetAllTopicResponse>> {
         return apiService.getAllTopics()
     }
 
@@ -43,7 +43,7 @@ class ApiServiceImpl @Inject constructor(retrofit:Retrofit): ApiSource {
         return apiService.getAllTopicsByName(name)
     }
 
-    override  fun getAllQuizzes(): Observable<Quiz> {
+    override  fun getAllQuizzes(): Observable<List<Quiz>> {
         return apiService.getAllQuizzes()
     }
 

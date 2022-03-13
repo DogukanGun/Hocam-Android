@@ -8,6 +8,7 @@ import com.dag.hocam.databinding.ItemTopicBinding
 
 class TopicAdapter constructor(val topicList:List<TopicResponse>): RecyclerView.Adapter<TopicAdapter.TopicViewHolder>() {
 
+    var listener:TopicListener? = null
     inner class TopicViewHolder(val binding:ItemTopicBinding): RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TopicViewHolder {
@@ -16,7 +17,13 @@ class TopicAdapter constructor(val topicList:List<TopicResponse>): RecyclerView.
     }
 
     override fun onBindViewHolder(holder: TopicViewHolder, position: Int) {
-        holder.binding.topicNameTV.text = topicList[position].topicName
+        holder.binding.apply {
+            val topic = topicList[position]
+            topicNameTV.text = topic.topicName
+            root.setOnClickListener{
+                listener?.topicClicked(topic)
+            }
+        }
     }
 
     override fun getItemCount(): Int = topicList.size

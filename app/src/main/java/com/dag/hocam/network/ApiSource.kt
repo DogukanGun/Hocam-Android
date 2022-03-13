@@ -25,11 +25,11 @@ interface ApiSource {
 
      fun addQuestion(addQuestionRequest: AddQuestionRequest)
 
-     fun getAllTopics(): Observable<GetAllTopicResponse>
+     fun getAllTopics(): Observable<List<GetAllTopicResponse>>
 
      fun getAllTopicsByName(name: String): Observable<GetAllTopicResponse>
 
-     fun getAllQuizzes(): Observable<Quiz>
+     fun getAllQuizzes(): Observable<List<Quiz>>
 
      fun completeQuiz(completeQuizRequest: CompleteQuizRequest): Observable<CompleteQuizRequest>
 

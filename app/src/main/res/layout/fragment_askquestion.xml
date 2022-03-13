@@ -8,13 +8,27 @@
     <ImageView
         android:id="@+id/imageViewIV"
         android:layout_width="0dp"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_height="300dp"
+        android:layout_marginStart="@dimen/marginSmall"
         android:layout_marginTop="@dimen/marginMedium"
         android:layout_marginEnd="@dimen/marginSmall"
-        android:layout_marginStart="@dimen/marginSmall"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_height="300dp"/>
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/uploadTextTV"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="@string/upload_text"
+        android:textColor="@color/black"
+        android:textSize="@dimen/textLargeSize"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="@+id/imageViewIV"
+        app:layout_constraintEnd_toEndOf="@+id/imageViewIV"
+        app:layout_constraintStart_toStartOf="@+id/imageViewIV"
+        app:layout_constraintTop_toTopOf="@+id/imageViewIV" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/uploadBTN"
