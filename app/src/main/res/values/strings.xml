@@ -18,6 +18,11 @@
     <string name="sendquestion_button">Soru Gönder</string>
 
 
+    <!-- Bottom Navigation -->
+    <string name="quiz_page_bottom_menu">Quiz</string>
+    <string name="subject_bottom_menu">Konu Anlatım</string>
+    <string name="ask_question_bottom_menu">Soru Sor</string>
+
     <!-- Send QuestionRequest -->
     <string name="upload_button">Soruyu Gönder</string>
 

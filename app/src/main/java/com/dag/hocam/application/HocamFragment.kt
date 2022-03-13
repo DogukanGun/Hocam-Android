@@ -59,6 +59,10 @@ abstract class HocamFragment<VM:HocamVM,DB:ViewDataBinding>:Fragment() {
         return null
     }
 
+    fun addFragment(fragment: HocamFragment<*,*>){
+        getHocamActivity()?.addFragment(fragment)
+    }
+
     fun startActivity(classAI:Class<*>){
         getHocamActivity()?.startActivity(classAI)
     }

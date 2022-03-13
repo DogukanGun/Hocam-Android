@@ -8,6 +8,9 @@ import com.dag.hocam.R
 import com.dag.hocam.application.HocamFragment
 import com.dag.hocam.databinding.FragmentHomeBinding
 import com.dag.hocam.ui.askquestion.AskQuestionActivity
+import com.dag.hocam.ui.askquestion.AskQuestionFragment
+import com.google.android.material.navigation.NavigationBarView
+import com.google.android.material.navigation.NavigationView
 import javax.inject.Inject
 
 class HomeFragment: HocamFragment<HomeFragmentVM,FragmentHomeBinding>() {

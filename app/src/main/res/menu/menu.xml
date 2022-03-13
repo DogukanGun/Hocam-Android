@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/quiz_bottom_navigation"
+        android:title="@string/quiz_page_bottom_menu"
+        android:icon="@drawable/ic_baseline_home"/>
+    <item
+        android:id="@+id/ask_question_bottom_navigation"
+        android:title="@string/ask_question_bottom_menu"
+        android:icon="@drawable/ic_baseline_ask_question"/>
+    <item
+        android:id="@+id/subject_bottom_navigation"
+        android:title="@string/subject_bottom_menu"
+        android:icon="@drawable/ic_baseline_menu_book"/>
+</menu>
