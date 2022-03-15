@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/titleTV"
+        tools:text = "Title"
+        android:textColor="@color/black"
+        android:textSize="@dimen/textMediumSize"
+        android:textAlignment="center"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/marginSmall"
+        android:layout_marginTop="@dimen/marginSmall"
+        android:layout_marginEnd="@dimen/marginSmall"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageChooseBTN"
+        android:layout_width="0dp"
+        android:layout_height="200dp"
+        android:layout_marginStart="@dimen/marginSmall"
+        android:layout_marginEnd="@dimen/marginSmall"
+        android:layout_marginTop="@dimen/marginSmall"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titleTV" />
+
+    <Spinner
+        android:id="@+id/correctAnswerSP"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/marginSmall"
+        android:layout_marginBottom="@dimen/marginSmall"
+        app:layout_constraintEnd_toEndOf="@+id/imageChooseBTN"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/imageChooseBTN"
+        app:layout_constraintTop_toBottomOf="@+id/imageChooseBTN" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="0dp"
+        android:textColor="@color/primary_color"
+        android:textSize="@dimen/textMediumSize"
+        android:textAlignment="center"
+        android:layout_height="wrap_content"
+        android:text="@string/upload_text"
+        app:layout_constraintBottom_toBottomOf="@+id/imageChooseBTN"
+        app:layout_constraintEnd_toEndOf="@+id/imageChooseBTN"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="@+id/imageChooseBTN"
+        app:layout_constraintTop_toTopOf="@+id/imageChooseBTN" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

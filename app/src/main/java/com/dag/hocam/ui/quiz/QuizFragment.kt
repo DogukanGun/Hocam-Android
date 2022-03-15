@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.dag.hocam.R
 import com.dag.hocam.application.HocamFragment
 import com.dag.hocam.application.HocamVS
+import com.dag.hocam.application.IntentConstant
+import com.dag.hocam.data.quiz.QuestionResponse
 import com.dag.hocam.data.quiz.Quiz
 import com.dag.hocam.databinding.FragmentQuizBinding
 import javax.inject.Inject
@@ -21,35 +23,43 @@ class QuizFragment: HocamFragment<QuizFragmentVM, FragmentQuizBinding>() {
     @Inject
     lateinit var quizFragmentVM: QuizFragmentVM
 
+    private lateinit var questionList: List<QuestionResponse>
+
+    private var totalPoint = 0
+    private var questionNumber = 0
+
+
+    companion object{
+        fun getInstance(quizName:String):QuizFragment{
+            return QuizFragment().apply {
+                arguments = Bundle().apply {
+                    putString(IntentConstant.QUIZ_NAME.name,quizName)
+                }
+            }
+        }
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val view = super.onCreateView(inflater, container, savedInstanceState)
-        viewModel?.getQuizzes()
+        arguments?.getString(IntentConstant.QUIZ_NAME.name,"")?.let {
+            viewModel?.getQuizQuestions(it)
+        }
         return view
     }
 
-    private fun setAdapter(quizList: List<Quiz>){
-        binding?.quizListRV?.apply {
-            this.layoutManager = LinearLayoutManager(requireContext())
-            this.adapter = QuizAdapter(quizList).also {
-                it.listener = quizListener
-            }
-        }
-    }
+    private fun startQuiz(){
 
-    private val quizListener = object :QuizListener{
-        override fun quizClicked(quiz: Quiz) {
-            Toast.makeText(requireContext(),"${quiz.quizName} is clicked",Toast.LENGTH_LONG).show()
-        }
     }
 
     override fun onStateChange(state: HocamVS) {
         when(state){
-            is QuizFragmentVS.SetAdapter ->{
-                setAdapter(state.quizList)
+            is QuizFragmentVS.SetQuestions ->{
+                questionList = state.questionList
+                startQuiz()
             }
         }
     }

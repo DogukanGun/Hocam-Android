@@ -2,6 +2,8 @@ package com.dag.hocam.di
 
 import com.dag.hocam.application.HocamSessionManager
 import com.dag.hocam.network.ApiSource
+import com.dag.hocam.ui.admin.AdminActivityVM
+import com.dag.hocam.ui.admin.AdminFragmentVM
 import com.dag.hocam.ui.askquestion.AskQuestionActivityVM
 import com.dag.hocam.ui.askquestion.AskQuestionFragmentVM
 import com.dag.hocam.ui.home.HomeActivityVM
@@ -53,4 +55,10 @@ class ViewModelModule {
     @Provides
     fun provideUserOperationFragmentVM(apiSource: ApiSource,sessionManager: HocamSessionManager) =
         UserOperationFragmentVM(apiSource,sessionManager)
+
+    @Provides
+    fun provideAdminActivityVM() = AdminActivityVM()
+
+    @Provides
+    fun provideAdminFragmentVM(apiSource: ApiSource) = AdminFragmentVM(apiSource)
 }

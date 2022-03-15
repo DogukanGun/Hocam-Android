@@ -21,6 +21,7 @@ class HomeActivity: HocamActivity<HomeActivityVM,ActivityHomeBinding>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setActionBar()
         binding?.bottomNav?.setOnItemSelectedListener(bottomNavigationListener)
         addFragment(TopicFragment())
     }

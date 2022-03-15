@@ -11,6 +11,13 @@
     <string name="change_to_login">Hey giriş mi yapmak istiyorsun ?</string>
 
 
+    <!-- Admin Page -->
+    <string name="add_quiz">Quiz Ekle</string>
+    <string name="quiz_name">Quiz İsmi</string>
+    <string name="add_subject">Konu Ekle</string>
+
+    <!-- Admin Quiz -->
+    <string name="topic_header">Konu :</string>
 
     <!-- Home Page -->
     <string name="question_button">Sorular</string>

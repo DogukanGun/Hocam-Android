@@ -1,9 +1,6 @@
 package com.dag.hocam.network
 
-import com.dag.hocam.data.quiz.AddQuestionRequest
-import com.dag.hocam.data.quiz.AddQuizRequest
-import com.dag.hocam.data.quiz.CompleteQuizRequest
-import com.dag.hocam.data.quiz.Quiz
+import com.dag.hocam.data.quiz.*
 import com.dag.hocam.data.subject.AddExampleQuestionRequest
 import com.dag.hocam.data.subject.AddSubjectRequest
 import com.dag.hocam.data.topic.AddTopicRequest
@@ -33,7 +30,7 @@ interface ApiSource {
 
      fun completeQuiz(completeQuizRequest: CompleteQuizRequest): Observable<CompleteQuizRequest>
 
-     fun getQuizzesByName(quizName: String): Observable<List<Quiz>>
+     fun getQuizzesByName(quizName: String): Observable<List<QuestionResponse>>
 
      fun login(loginRequest: LoginRequest): Observable<AuthenticationResponse>
 

@@ -47,6 +47,10 @@ abstract class HocamFragment<VM:HocamVM,DB:ViewDataBinding>:Fragment() {
         super.onAttach(context)
     }
 
+    fun startActivityWithArgument(classAI:Class<*>,key:String,value:String){
+        getHocamActivity()?.startActivityWithArgument(classAI,key,value)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel = getLayoutVM()

@@ -1,9 +1,6 @@
 package com.dag.hocam.network
 
-import com.dag.hocam.data.quiz.AddQuestionRequest
-import com.dag.hocam.data.quiz.AddQuizRequest
-import com.dag.hocam.data.quiz.CompleteQuizRequest
-import com.dag.hocam.data.quiz.Quiz
+import com.dag.hocam.data.quiz.*
 import com.dag.hocam.data.subject.AddExampleQuestionRequest
 import com.dag.hocam.data.subject.AddSubjectRequest
 import com.dag.hocam.data.topic.AddTopicRequest
@@ -51,7 +48,7 @@ class ApiServiceImpl @Inject constructor(retrofit:Retrofit): ApiSource {
         return apiService.completeQuiz(completeQuizRequest)
     }
 
-    override  fun getQuizzesByName(quizName: String): Observable<List<Quiz>> {
+    override  fun getQuizzesByName(quizName: String): Observable<List<QuestionResponse>> {
         return apiService.getQuizzesByName(quizName)
     }
 

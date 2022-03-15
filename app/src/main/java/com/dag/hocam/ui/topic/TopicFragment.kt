@@ -4,15 +4,20 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dag.hocam.R
 import com.dag.hocam.application.HocamFragment
 import com.dag.hocam.application.HocamVS
 import com.dag.hocam.application.IntentConstant
+import com.dag.hocam.data.quiz.Quiz
 import com.dag.hocam.data.topic.TopicPath
 import com.dag.hocam.data.topic.TopicResponse
 import com.dag.hocam.databinding.FragmentTopicBinding
+import com.dag.hocam.ui.quiz.QuizActivity
+import com.dag.hocam.ui.quiz.QuizAdapter
 import com.dag.hocam.ui.quiz.QuizFragment
+import com.dag.hocam.ui.quiz.QuizListener
 import javax.inject.Inject
 import javax.security.auth.Subject
 
@@ -52,22 +57,43 @@ class TopicFragment: HocamFragment<TopicFragmentVM,FragmentTopicBinding>() {
     override fun onStateChange(state: HocamVS) {
         when(state){
             is TopicFragmentVS.SetTopic ->{
-                val adapter = TopicAdapter(state.topicList).also {
-                    it.listener = topicRecyclerViewListener
-                }
-                binding?.topicListRV?.apply {
-                    this.adapter = adapter
-                    this.layoutManager = LinearLayoutManager(requireContext())
-                }
-
+              setTopicAdapter(state.topicList)
             }
+            is TopicFragmentVS.SetQuizzes ->{
+                setQuizAdapter(state.quizList)
+            }
+        }
+    }
+
+    private fun setQuizAdapter(quizList:List<Quiz>){
+        binding?.topicListRV?.apply {
+            this.layoutManager = LinearLayoutManager(requireContext())
+            this.adapter = QuizAdapter(quizList).also {
+                it.listener = quizListener
+            }
+        }
+    }
+
+    private val quizListener = object : QuizListener {
+        override fun quizClicked(quiz: Quiz) {
+            startActivityWithArgument(QuizActivity::class.java,IntentConstant.QUIZ_NAME.name,quiz.quizName)
+        }
+    }
+
+    private fun setTopicAdapter(topicList:List<TopicResponse>){
+        val adapter = TopicAdapter(topicList).also {
+            it.listener = topicRecyclerViewListener
+        }
+        binding?.topicListRV?.apply {
+            this.adapter = adapter
+            this.layoutManager = LinearLayoutManager(requireContext())
         }
     }
 
     val topicRecyclerViewListener = object :TopicListener{
         override fun topicClicked(topic: TopicResponse) {
             if (topicPath == TopicPath.QUIZ){
-                addFragment(QuizFragment())
+                viewModel?.getQuizzes()
             }else if (topicPath == TopicPath.SUBJECT){
                 //add subject
             }

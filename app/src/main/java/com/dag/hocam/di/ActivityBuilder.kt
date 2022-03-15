@@ -1,6 +1,7 @@
 package com.dag.hocam.di
 
 import android.view.View
+import com.dag.hocam.ui.admin.*
 import com.dag.hocam.ui.askquestion.AskQuestionActivity
 import com.dag.hocam.ui.askquestion.AskQuestionFragment
 import com.dag.hocam.ui.home.HomeActivity
@@ -51,4 +52,13 @@ abstract class ActivityBuilder {
 
     @ContributesAndroidInjector(modules = [ViewModelModule::class])
     abstract fun provideUserOperationFragment(): UserOperationFragment
+
+    @ContributesAndroidInjector(modules = [ViewModelModule::class])
+    abstract fun provideAdminActivity(): AdminActivity
+
+    @ContributesAndroidInjector(modules = [ViewModelModule::class])
+    abstract fun provideAdminFragment(): AdminFragment
+
+    @ContributesAndroidInjector(modules = [ViewModelModule::class])
+    abstract fun provideAdminAddQuizFragment(): AdminAddQuizFragment
 }

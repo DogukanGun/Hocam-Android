@@ -3,12 +3,17 @@ package com.dag.hocam.application
 import android.content.Intent
 import android.os.Bundle
 import android.os.PersistableBundle
+import android.view.View
+import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import com.dag.hocam.BR
 import com.dag.hocam.R
+import com.dag.hocam.data.session.SessionKey
+import com.dag.hocam.ui.admin.AdminActivity
 import dagger.android.AndroidInjection
+import javax.inject.Inject
 
 abstract class HocamActivity<VM:HocamVM,DB: ViewDataBinding>:AppCompatActivity() {
 
@@ -26,6 +31,9 @@ abstract class HocamActivity<VM:HocamVM,DB: ViewDataBinding>:AppCompatActivity()
 
     protected var viewModel:VM? = null
     protected var binding:DB? = null
+
+    @Inject
+    lateinit var sessionManager: HocamSessionManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
@@ -72,6 +80,19 @@ abstract class HocamActivity<VM:HocamVM,DB: ViewDataBinding>:AppCompatActivity()
 
     }
 
+    fun setActionBar(){
+        val addButton = findViewById<ImageButton>(R.id.addBTN)
+        sessionManager.getData<String>(SessionKey.USERTYPE.name)?.let {
+            if(it.lowercase().equals("admin")){
+                addButton.visibility = View.VISIBLE
+                addButton.setOnClickListener {
+                    startActivity(AdminActivity::class.java)
+                }
+            }
+        }
+
+    }
+
     fun addFragment(fragment: HocamFragment<*,*>){
         val fragmentTransaction = supportFragmentManager.beginTransaction()
         fragmentTransaction.addToBackStack(null)
@@ -81,6 +102,12 @@ abstract class HocamActivity<VM:HocamVM,DB: ViewDataBinding>:AppCompatActivity()
 
     fun startActivity(classAI:Class<*>){
         val intent = Intent(this,classAI)
+        startActivity(intent)
+    }
+
+    fun startActivityWithArgument(classAI:Class<*>,key:String,value:String){
+        val intent = Intent(this,classAI)
+        intent.putExtra(key,value)
         startActivity(intent)
     }
 
