@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
@@ -14,6 +15,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.dag.hocam.R
 import com.dag.hocam.application.HocamFragment
 import com.dag.hocam.application.HocamVS
+import com.dag.hocam.data.quiz.AddQuestionRequest
+import com.dag.hocam.data.quiz.AddQuizRequest
 import com.dag.hocam.data.quiz.QuestionResponse
 import com.dag.hocam.data.quiz.Quiz
 import com.dag.hocam.data.topic.TopicResponse
@@ -35,6 +38,7 @@ class AdminAddQuizFragment: HocamFragment<AdminFragmentVM,FragmentAdminAddQuizBi
 
     var questionList = mutableListOf<QuestionResponse>()
     var selectedQuestionId = 0
+    var selectedTopic = 0
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -59,7 +63,14 @@ class AdminAddQuizFragment: HocamFragment<AdminFragmentVM,FragmentAdminAddQuizBi
     }
 
     private val submitButtonListener = View.OnClickListener {
-        var list = adapter.questionList
+        val questionList = adapter.questionList
+        var requestList = mutableListOf<AddQuestionRequest>()
+        for (question in questionList){
+            requestList.add(AddQuestionRequest(question.question,question.correctAnswer,question.id.toLong()))
+        }
+        val addQuizRequest = AddQuizRequest(binding?.editTextTextPersonName?.text.toString(),
+            selectedTopic, requestList)
+        viewModel?.addQuiz(addQuizRequest)
     }
 
     private val adapterListener = object :AdminAddQuizAdapter.AdminAddQuizAdapterListener{
@@ -71,7 +82,7 @@ class AdminAddQuizFragment: HocamFragment<AdminFragmentVM,FragmentAdminAddQuizBi
 
     private fun createListForRV(){
         for (index in 0 until 12){
-            questionList.add(QuestionResponse("","",""))
+            questionList.add(QuestionResponse("","","",""))
         }
     }
 
@@ -83,14 +94,25 @@ class AdminAddQuizFragment: HocamFragment<AdminFragmentVM,FragmentAdminAddQuizBi
     }
 
     private fun setTopic(topicList:List<TopicResponse>){
-        var newList = topicList.map { it.topicName }
+        val newList = topicList.map { it.topicName }
         binding?.spinner?.adapter = ArrayAdapter(requireContext(),android.R.layout.simple_spinner_item,newList)
+        binding?.spinner?.onItemSelectedListener = object :AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+                selectedTopic = topicList[p2].id
+            }
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+                selectedTopic = topicList[0].id
+            }
+        }
     }
 
     override fun onStateChange(state: HocamVS) {
         when(state){
             is AdminAddQuizFragmentVS.SetTopic ->{
                 setTopic(state.topicList)
+            }
+            AdminAddQuizFragmentVS.QuizAdded ->{
+                finishActivity()
             }
         }
     }

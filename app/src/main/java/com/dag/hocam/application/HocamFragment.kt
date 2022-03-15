@@ -47,6 +47,10 @@ abstract class HocamFragment<VM:HocamVM,DB:ViewDataBinding>:Fragment() {
         super.onAttach(context)
     }
 
+    fun finishActivity(){
+        getHocamActivity()?.finish()
+    }
+
     fun startActivityWithArgument(classAI:Class<*>,key:String,value:String){
         getHocamActivity()?.startActivityWithArgument(classAI,key,value)
     }

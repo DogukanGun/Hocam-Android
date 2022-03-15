@@ -21,6 +21,8 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.dag.hocam.R
+import com.dag.hocam.data.quiz.AddQuestionRequest
+import com.dag.hocam.data.quiz.AddQuizRequest
 import com.dag.hocam.data.quiz.QuestionResponse
 import com.dag.hocam.databinding.ItemAddQuizBinding
 import com.squareup.picasso.Picasso
@@ -99,7 +101,6 @@ class AdminAddQuizAdapter(var questionList:List<QuestionResponse>, val context: 
     }
 
     override fun getItemCount(): Int = quizAmount
-
 
     fun convertToBase64(bitmap: Bitmap):String{
         val byteArrayOutputStream = ByteArrayOutputStream()

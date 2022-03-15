@@ -6,4 +6,5 @@ import com.dag.hocam.data.topic.TopicResponse
 sealed class AdminAddQuizFragmentVS: HocamVS {
 
     class SetTopic(val topicList:List<TopicResponse>): AdminAddQuizFragmentVS()
+    object QuizAdded: AdminAddQuizFragmentVS()
 }

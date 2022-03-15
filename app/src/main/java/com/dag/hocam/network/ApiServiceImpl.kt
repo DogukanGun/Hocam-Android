@@ -24,8 +24,8 @@ class ApiServiceImpl @Inject constructor(retrofit:Retrofit): ApiSource {
         return apiService.addSubject(addSubjectRequest)
     }
 
-    override  fun addQuiz(addQuizRequest: AddQuizRequest) {
-        apiService.addQuiz(addQuizRequest)
+    override  fun addQuiz(addQuizRequest: AddQuizRequest): Observable<AddQuizResponse> {
+        return apiService.addQuiz(addQuizRequest)
     }
 
     override  fun addQuestion(addQuestionRequest: AddQuestionRequest) {

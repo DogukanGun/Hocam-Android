@@ -26,7 +26,7 @@ interface ApiService {
      fun addSubject(@Body addSubjectRequest: AddSubjectRequest): Observable<AddSubjectRequest>
 
     @POST("add/quiz")
-     fun addQuiz(@Body addQuizRequest: AddQuizRequest)
+     fun addQuiz(@Body addQuizRequest: AddQuizRequest): Observable<AddQuizResponse>
 
     @POST("add/question")
      fun addQuestion(@Body addQuestionRequest: AddQuestionRequest)

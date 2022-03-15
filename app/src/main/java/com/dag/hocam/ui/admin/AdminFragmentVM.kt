@@ -1,6 +1,8 @@
 package com.dag.hocam.ui.admin
 
 import com.dag.hocam.application.HocamVM
+import com.dag.hocam.data.quiz.AddQuizRequest
+import com.dag.hocam.data.quiz.AddQuizResponse
 import com.dag.hocam.data.topic.GetAllTopicResponse
 import com.dag.hocam.data.topic.TopicResponse
 import com.dag.hocam.network.ApiSource
@@ -30,6 +32,27 @@ class AdminFragmentVM @Inject constructor(
                         topicResponseList.add(topicResponse)
                     }
                     state.postValue(AdminAddQuizFragmentVS.SetTopic(topicResponseList))
+                }
+
+                override fun onError(e: Throwable) {
+                }
+
+                override fun onComplete() {
+                }
+
+            })
+    }
+
+    fun addQuiz(addQuizRequest: AddQuizRequest){
+        apiSource.addQuiz(addQuizRequest)
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.io())
+            .subscribe(object : Observer<AddQuizResponse>{
+                override fun onSubscribe(d: Disposable) {
+                }
+
+                override fun onNext(t: AddQuizResponse) {
+                    state.postValue(AdminAddQuizFragmentVS.QuizAdded)
                 }
 
                 override fun onError(e: Throwable) {

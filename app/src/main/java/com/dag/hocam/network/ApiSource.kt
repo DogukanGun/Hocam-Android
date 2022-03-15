@@ -18,7 +18,7 @@ interface ApiSource {
 
      fun addSubject(addSubjectRequest: AddSubjectRequest): Observable<AddSubjectRequest>
 
-     fun addQuiz(addQuizRequest: AddQuizRequest)
+     fun addQuiz(addQuizRequest: AddQuizRequest): Observable<AddQuizResponse>
 
      fun addQuestion(addQuestionRequest: AddQuestionRequest)
 
