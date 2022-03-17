@@ -1,6 +1,7 @@
 package com.dag.hocam.ui.quiz
 
 import android.os.Bundle
+import android.widget.Toast
 import com.dag.hocam.R
 import com.dag.hocam.application.HocamActivity
 import com.dag.hocam.application.IntentConstant
@@ -20,5 +21,9 @@ class QuizActivity: HocamActivity<QuizActivityVM,ActivityQuizBinding>() {
         intent.getStringExtra(IntentConstant.QUIZ_NAME.name)?.let {
             addFragment(QuizFragment.getInstance(it))
         }
+    }
+
+    override fun onBackPressed() {
+        Toast.makeText(applicationContext,R.string.quiz_back_button_error_message,Toast.LENGTH_LONG).show()
     }
 }

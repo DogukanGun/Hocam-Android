@@ -56,6 +56,7 @@ class AdminFragmentVM @Inject constructor(
                 }
 
                 override fun onError(e: Throwable) {
+
                 }
 
                 override fun onComplete() {

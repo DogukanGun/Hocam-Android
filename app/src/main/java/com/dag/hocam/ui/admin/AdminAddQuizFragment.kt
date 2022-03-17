@@ -66,7 +66,7 @@ class AdminAddQuizFragment: HocamFragment<AdminFragmentVM,FragmentAdminAddQuizBi
         val questionList = adapter.questionList
         var requestList = mutableListOf<AddQuestionRequest>()
         for (question in questionList){
-            requestList.add(AddQuestionRequest(question.question,question.correctAnswer,question.id.toLong()))
+            requestList.add(AddQuestionRequest(question.question,question.correctAnswer,0))
         }
         val addQuizRequest = AddQuizRequest(binding?.editTextTextPersonName?.text.toString(),
             selectedTopic, requestList)

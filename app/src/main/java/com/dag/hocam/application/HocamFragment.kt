@@ -24,6 +24,8 @@ abstract class HocamFragment<VM:HocamVM,DB:ViewDataBinding>:Fragment() {
 
     open fun hasSettingButton() = false
 
+    open fun hasNextButton() = false
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -65,6 +67,18 @@ abstract class HocamFragment<VM:HocamVM,DB:ViewDataBinding>:Fragment() {
             return it as HocamActivity<*,*>
         }
         return null
+    }
+
+    fun setActionBar(){
+        getHocamActivity()?.setActionBar(hasNextButton(),hasSettingButton())
+    }
+
+    fun setActionBar(nextButtonState:Boolean,settingsButtonState:Boolean){
+        getHocamActivity()?.setActionBar(nextButtonState,settingsButtonState)
+    }
+
+    fun setNextButtonListener(nextButtonListener:View.OnClickListener){
+        getHocamActivity()?.setNextButtonListener(nextButtonListener)
     }
 
     fun addFragment(fragment: HocamFragment<*,*>){

@@ -1,6 +1,7 @@
 package com.dag.hocam.application
 
 import android.content.Intent
+import android.media.Image
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.view.View
@@ -29,8 +30,11 @@ abstract class HocamActivity<VM:HocamVM,DB: ViewDataBinding>:AppCompatActivity()
 
     open fun hasSettingButton() = false
 
+    open fun hasNextButton() = false
+
     protected var viewModel:VM? = null
     protected var binding:DB? = null
+    private var nextButtonListener:View.OnClickListener? = null
 
     @Inject
     lateinit var sessionManager: HocamSessionManager
@@ -80,17 +84,35 @@ abstract class HocamActivity<VM:HocamVM,DB: ViewDataBinding>:AppCompatActivity()
 
     }
 
-    fun setActionBar(){
+    fun setActionBar(nextButtonState:Boolean,settingsButtonState:Boolean){
         val addButton = findViewById<ImageButton>(R.id.addBTN)
+        val settingButton = findViewById<ImageButton>(R.id.settingsBTN)
+        val nextButton = findViewById<ImageButton>(R.id.nextBTN)
+
         sessionManager.getData<String>(SessionKey.USERTYPE.name)?.let {
-            if(it.lowercase().equals("admin")){
+            if(it.lowercase() == "admin" && !nextButtonState){
                 addButton.visibility = View.VISIBLE
                 addButton.setOnClickListener {
                     startActivity(AdminActivity::class.java)
                 }
             }
         }
+        settingButton.visibility = if (settingsButtonState) View.VISIBLE else View.GONE
+        nextButton.visibility = if (nextButtonState) View.VISIBLE else View.GONE
+        nextButton.setOnClickListener(if (nextButtonState) nextButtonListener else null)
+        settingButton.setOnClickListener(if (settingsButtonState) settingButtonListener else null)
+    }
 
+    fun setActionBar(){
+        setActionBar(hasNextButton(),hasSettingButton())
+    }
+
+    private var settingButtonListener = View.OnClickListener{
+        //setting activity çalıştır
+    }
+
+    fun setNextButtonListener(nextButtonListener:View.OnClickListener){
+        this.nextButtonListener = nextButtonListener
     }
 
     fun addFragment(fragment: HocamFragment<*,*>){
