@@ -147,11 +147,18 @@ class QuizFragment: HocamFragment<QuizFragmentVM, FragmentQuizBinding>() {
             notChooseButton(it.answerDBTN)
             notChooseButton(it.answerEBTN)
             selectedAnswer = null
-            it.totalPointTV.setText(totalPoint)
-            questionNumber.inc()
+            it.totalPointTV.text = totalPoint.toString()
+            questionNumber+=1
             isAnswerSelected = false
-            startQuiz()
+            if (questionList.size < questionNumber)
+                startQuiz()
+            else
+                finishQuiz()
         }
+    }
+
+    private fun finishQuiz(){
+
     }
 
     private fun startQuiz(){
