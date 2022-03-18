@@ -8,7 +8,7 @@
     <ImageButton
         android:id="@+id/settingsBTN"
         android:background="@color/primary_color"
-        android:src="@drawable/ic_baseline_settings"
+        android:src="@drawable/ic_baseline_person"
         android:layout_marginStart="16dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

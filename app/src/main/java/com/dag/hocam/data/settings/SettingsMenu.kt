@@ -8,6 +8,6 @@ enum class SettingsMenu(
     val authentication:UserType
 ) {
 
-    SolvedQuestions(R.string.solved_questions,UserType.USER),
+    SolvedQuizzes(R.string.solved_questions,UserType.USER),
     AnswerQuestions(R.string.answer_questions,UserType.ADMIN)
 }

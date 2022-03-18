@@ -49,7 +49,7 @@
     <string name="upload_text">Sorunu Yükle</string>
 
     <!-- Send QuestionRequest -->
-    <string name="solved_questions">Çözdüğüm Sorular</string>
+    <string name="solved_questions">Çözdüğüm Sınavlar</string>
     <string name="answer_questions">Soruları Cevapla</string>
 
 

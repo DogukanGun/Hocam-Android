@@ -2,6 +2,8 @@ package com.dag.hocam.network
 
 import com.dag.hocam.application.Constant
 import com.dag.hocam.data.questionfromuser.AddQuestionFromUserRequest
+import com.dag.hocam.data.questionfromuser.AddQuestionFromUserResponse
+import com.dag.hocam.data.questionfromuser.SolveQuestionResponse
 import com.dag.hocam.data.quiz.*
 import com.dag.hocam.data.subject.AddExampleQuestionRequest
 import com.dag.hocam.data.subject.AddSubjectRequest
@@ -13,10 +15,7 @@ import com.dag.hocam.data.user.LoginRequest
 import com.dag.hocam.data.user.RegisterRequest
 import io.reactivex.Observable
 import retrofit2.Response
-import retrofit2.http.Body
-import retrofit2.http.Headers
-import retrofit2.http.POST
-import retrofit2.http.Path
+import retrofit2.http.*
 
 interface ApiService {
 
@@ -73,9 +72,13 @@ interface ApiService {
 
     @POST("questionfromuser/get/id/{questionId}")
     fun getQuestionFromUser(@Path("questionId") questionId: Int):
-            Observable<AddQuestionFromUserRequest>
+            Observable<AddQuestionFromUserResponse>
 
     @POST("questionfromuser/get/all")
     fun getAllQuestionFromUser():
-            Observable<List<AddQuestionFromUserRequest>>
+            Observable<List<AddQuestionFromUserResponse>>
+
+    @POST("quiz/quiz/solved/{username}")
+    fun getAllSolvedQuizzes(@Path("username") username: String):
+            Observable<List<SolvedQuizResponse>>
 }

@@ -11,6 +11,7 @@ import com.dag.hocam.ui.quiz.QuizFragment
 import com.dag.hocam.ui.quiz.QuizResultFragment
 import com.dag.hocam.ui.settings.SettingsActivity
 import com.dag.hocam.ui.settings.SettingsFragment
+import com.dag.hocam.ui.settings.SettingsQuizNotAnsweredQuestion
 import com.dag.hocam.ui.splash.SplashActivity
 import com.dag.hocam.ui.topic.TopicActivity
 import com.dag.hocam.ui.topic.TopicFragment
@@ -73,4 +74,7 @@ abstract class ActivityBuilder {
 
     @ContributesAndroidInjector(modules = [ViewModelModule::class])
     abstract fun provideSettingsActivity(): SettingsActivity
+
+    @ContributesAndroidInjector(modules = [ViewModelModule::class])
+    abstract fun provideSettingsQuizNotAnsweredQuestion(): SettingsQuizNotAnsweredQuestion
 }

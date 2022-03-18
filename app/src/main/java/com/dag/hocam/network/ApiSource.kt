@@ -1,6 +1,7 @@
 package com.dag.hocam.network
 
 import com.dag.hocam.data.questionfromuser.AddQuestionFromUserRequest
+import com.dag.hocam.data.questionfromuser.AddQuestionFromUserResponse
 import com.dag.hocam.data.quiz.*
 import com.dag.hocam.data.subject.AddExampleQuestionRequest
 import com.dag.hocam.data.subject.AddSubjectRequest
@@ -49,11 +50,14 @@ interface ApiSource {
              Observable<AddQuestionFromUserRequest>
 
      fun getQuestionFromUser(questionId: Int):
-             Observable<AddQuestionFromUserRequest>
+             Observable<AddQuestionFromUserResponse>
 
      fun getAllQuestionFromUser():
-             Observable<List<AddQuestionFromUserRequest>>
+             Observable<List<AddQuestionFromUserResponse>>
 
      fun addQuestionFromUser(questionFromUserRequest: AddQuestionFromUserRequest):
              Observable<AddQuestionFromUserRequest>
+
+     fun getAllSolvedQuizzes(username: String):
+             Observable<List<SolvedQuizResponse>>
 }

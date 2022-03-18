@@ -12,7 +12,7 @@
         <entry key="app/src/main/res/layout/activity_askquestion.xml" value="0.29010416666666666" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.1421875" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.29010416666666666" />
-        <entry key="app/src/main/res/layout/activity_quiz.xml" value="0.29010416666666666" />
+        <entry key="app/src/main/res/layout/activity_quiz.xml" value="0.26929982046678635" />
         <entry key="app/src/main/res/layout/activity_settings.xml" value="0.290625" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.1421875" />
         <entry key="app/src/main/res/layout/activity_topic.xml" value="0.29010416666666666" />
@@ -28,6 +28,7 @@
         <entry key="app/src/main/res/layout/fragment_quiz_result.xml" value="0.290625" />
         <entry key="app/src/main/res/layout/fragment_quiz_result_fragment.xml" value="0.290625" />
         <entry key="app/src/main/res/layout/fragment_settings.xml" value="0.290625" />
+        <entry key="app/src/main/res/layout/fragment_settings_quiz_not_answered_question.xml" value="0.290625" />
         <entry key="app/src/main/res/layout/fragment_topic.xml" value="0.29010416666666666" />
         <entry key="app/src/main/res/layout/fragment_user_operation.xml" value="0.29010416666666666" />
         <entry key="app/src/main/res/layout/item_add_quiz.xml" value="0.29010416666666666" />

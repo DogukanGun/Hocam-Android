@@ -65,7 +65,8 @@ class ViewModelModule {
     fun provideAdminFragmentVM(apiSource: ApiSource) = AdminFragmentVM(apiSource)
 
     @Provides
-    fun provideSettingsFragmentVM(apiSource: ApiSource) = SettingsFragmentVM()
+    fun provideSettingsFragmentVM(sessionManager: HocamSessionManager,apiSource: ApiSource) =
+        SettingsFragmentVM(sessionManager,apiSource)
 
     @Provides
     fun provideSettingActivityVM() = SettingsActivityVM()
