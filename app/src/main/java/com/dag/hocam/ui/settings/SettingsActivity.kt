@@ -11,11 +11,25 @@ class SettingsActivity: HocamActivity<SettingsActivityVM,ActivitySettingsBinding
 
     override fun getLayoutVM(): SettingsActivityVM = settingsActivityVM
 
+    override fun hasCloseButton(): Boolean = true
+
     @Inject
     lateinit var settingsActivityVM: SettingsActivityVM
 
+    var currentFragment = SettingsFragment()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        addFragment(SettingsFragment())
+        setActionBar()
+        addFragment(currentFragment)
+    }
+
+    override fun onBackPressed() {
+        val fragmentTransaction = supportFragmentManager.beginTransaction()
+        fragmentTransaction.remove(currentFragment)
+        fragmentTransaction.commitAllowingStateLoss()
+        supportFragmentManager.popBackStackImmediate()
+        currentFragment = SettingsFragment()
+        addFragment(currentFragment)
     }
 }

@@ -7,4 +7,5 @@ sealed class AdminAddQuizFragmentVS: HocamVS {
 
     class SetTopic(val topicList:List<TopicResponse>): AdminAddQuizFragmentVS()
     object QuizAdded: AdminAddQuizFragmentVS()
+    object Error: AdminAddQuizFragmentVS()
 }

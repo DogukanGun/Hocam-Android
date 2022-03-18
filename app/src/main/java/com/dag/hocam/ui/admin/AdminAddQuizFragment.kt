@@ -46,6 +46,7 @@ class AdminAddQuizFragment: HocamFragment<AdminFragmentVM,FragmentAdminAddQuizBi
         savedInstanceState: Bundle?
     ): View? {
         val view = super.onCreateView(inflater, container, savedInstanceState)
+        showProgress()
         viewModel?.getTopics()
         createListForRV()
         registerActivityResultLauncher()
@@ -70,6 +71,7 @@ class AdminAddQuizFragment: HocamFragment<AdminFragmentVM,FragmentAdminAddQuizBi
         }
         val addQuizRequest = AddQuizRequest(binding?.editTextTextPersonName?.text.toString(),
             selectedTopic, requestList)
+        showProgress()
         viewModel?.addQuiz(addQuizRequest)
     }
 
@@ -109,10 +111,15 @@ class AdminAddQuizFragment: HocamFragment<AdminFragmentVM,FragmentAdminAddQuizBi
     override fun onStateChange(state: HocamVS) {
         when(state){
             is AdminAddQuizFragmentVS.SetTopic ->{
+                showProgress()
                 setTopic(state.topicList)
             }
             AdminAddQuizFragmentVS.QuizAdded ->{
+                showProgress()
                 finishActivity()
+            }
+            AdminAddQuizFragmentVS.Error ->{
+                showErrorProgress()
             }
         }
     }

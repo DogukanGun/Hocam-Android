@@ -43,6 +43,10 @@ class TopicFragmentVM @Inject constructor(
             })
     }
 
+    fun getSubjects(){
+        state.postValue(TopicFragmentVS.Soon)
+    }
+
     fun getQuizzes(){
         apiSource.getAllQuizzes()
             .observeOn(AndroidSchedulers.mainThread())

@@ -35,6 +35,7 @@ class AdminFragmentVM @Inject constructor(
                 }
 
                 override fun onError(e: Throwable) {
+                    state.postValue(AdminAddQuizFragmentVS.Error)
                 }
 
                 override fun onComplete() {
@@ -56,7 +57,7 @@ class AdminFragmentVM @Inject constructor(
                 }
 
                 override fun onError(e: Throwable) {
-
+                    state.postValue(AdminAddQuizFragmentVS.Error)
                 }
 
                 override fun onComplete() {

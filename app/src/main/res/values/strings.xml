@@ -10,6 +10,9 @@
     <string name="change_to_register">Hey yeni bir üyelik açmak ister misin ?</string>
     <string name="change_to_login">Hey giriş mi yapmak istiyorsun ?</string>
 
+    <!-- Subject Activity -->
+    <string name="coming_soon">Yakında bu özellik gelecek</string>
+
     <!-- Quiz Activity -->
     <string name="quiz_back_button_error_message">Testi bitirmeden çıkamazsınız</string>
     <string name="quiz_next_button_error_message">Devam etmeden önce bir şık seçiniz</string>
@@ -21,9 +24,6 @@
     <string name="answer_e">E</string>
     <string name="total_point_key">Skorun :</string>
     <string name="finish_quiz">Geri Dön</string>
-
-
-
 
     <!-- Admin Page -->
     <string name="add_quiz">Quiz Ekle</string>

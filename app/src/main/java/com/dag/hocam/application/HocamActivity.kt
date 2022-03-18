@@ -32,6 +32,10 @@ abstract class HocamActivity<VM:HocamVM,DB: ViewDataBinding>:AppCompatActivity()
 
     open fun hasSettingButton() = false
 
+    open fun hasCloseButton() = false
+
+    open fun hasAddButton() = true
+
     open fun hasNextButton() = false
 
     protected var viewModel:VM? = null
@@ -88,13 +92,14 @@ abstract class HocamActivity<VM:HocamVM,DB: ViewDataBinding>:AppCompatActivity()
 
     }
 
-    fun setActionBar(nextButtonState:Boolean,settingsButtonState:Boolean){
+    fun setActionBar(nextButtonState:Boolean,settingsButtonState:Boolean,closeButtonState:Boolean){
         val addButton = findViewById<ImageButton>(R.id.addBTN)
         val settingButton = findViewById<ImageButton>(R.id.settingsBTN)
         val nextButton = findViewById<ImageButton>(R.id.nextBTN)
+        val closeButton = findViewById<ImageButton>(R.id.closeBTN)
 
         sessionManager.getData<String>(SessionKey.USERTYPE.name)?.let {
-            if(it.lowercase() == "admin" && !nextButtonState){
+            if(it.lowercase() == "admin" && !nextButtonState && hasAddButton()){
                 addButton.visibility = View.VISIBLE
                 addButton.setOnClickListener {
                     startActivity(AdminActivity::class.java)
@@ -103,12 +108,19 @@ abstract class HocamActivity<VM:HocamVM,DB: ViewDataBinding>:AppCompatActivity()
         }
         settingButton.visibility = if (settingsButtonState) View.VISIBLE else View.GONE
         nextButton.visibility = if (nextButtonState) View.VISIBLE else View.GONE
+        closeButton.visibility = if (closeButtonState && !settingsButtonState) View.VISIBLE else View.GONE
         nextButton.setOnClickListener(if (nextButtonState) nextButtonListener else null)
         settingButton.setOnClickListener(if (settingsButtonState) settingButtonListener else null)
+        closeButton.setOnClickListener(if (closeButtonState && !settingsButtonState) closeButtonListener else null)
+
     }
 
     fun setActionBar(){
-        setActionBar(hasNextButton(),hasSettingButton())
+        setActionBar(hasNextButton(),hasSettingButton(),hasCloseButton())
+    }
+
+    private var closeButtonListener = View.OnClickListener {
+        finish()
     }
 
     private var settingButtonListener = View.OnClickListener{

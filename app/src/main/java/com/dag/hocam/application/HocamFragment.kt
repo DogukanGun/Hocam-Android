@@ -24,6 +24,8 @@ abstract class HocamFragment<VM:HocamVM,DB:ViewDataBinding>:Fragment() {
 
     open fun hasSettingButton() = false
 
+    open fun hasCloseButton() = false
+
     open fun hasNextButton() = false
 
     override fun onCreateView(
@@ -70,11 +72,11 @@ abstract class HocamFragment<VM:HocamVM,DB:ViewDataBinding>:Fragment() {
     }
 
     fun setActionBar(){
-        getHocamActivity()?.setActionBar(hasNextButton(),hasSettingButton())
+        getHocamActivity()?.setActionBar(hasNextButton(),hasSettingButton(),hasCloseButton())
     }
 
-    fun setActionBar(nextButtonState:Boolean,settingsButtonState:Boolean){
-        getHocamActivity()?.setActionBar(nextButtonState,settingsButtonState)
+    fun setActionBar(nextButtonState:Boolean,settingsButtonState:Boolean,closeButtonState:Boolean){
+        getHocamActivity()?.setActionBar(nextButtonState,settingsButtonState,closeButtonState)
     }
 
     fun setNextButtonListener(nextButtonListener:View.OnClickListener){

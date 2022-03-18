@@ -69,6 +69,18 @@ class TopicFragment: HocamFragment<TopicFragmentVM,FragmentTopicBinding>() {
             TopicFragmentVS.Error ->{
                 showErrorProgress()
             }
+            TopicFragmentVS.Soon ->{
+                setSoonAdapter()
+            }
+        }
+    }
+
+    private fun setSoonAdapter(){
+        binding?.topicListRV?.apply {
+            this.layoutManager = LinearLayoutManager(requireContext())
+            this.adapter = TopicAdapter(emptyList()).also {
+                it.soonActive = true
+            }
         }
     }
 
@@ -100,13 +112,13 @@ class TopicFragment: HocamFragment<TopicFragmentVM,FragmentTopicBinding>() {
         }
     }
 
-    val topicRecyclerViewListener = object :TopicListener{
+    private val topicRecyclerViewListener = object :TopicListener{
         override fun topicClicked(topic: TopicResponse) {
             if (topicPath == TopicPath.QUIZ){
                 showProgress()
                 viewModel?.getQuizzes()
             }else if (topicPath == TopicPath.SUBJECT){
-                //add subject
+                viewModel?.getSubjects()
             }
         }
     }
