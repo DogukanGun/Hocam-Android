@@ -19,6 +19,10 @@
     <string name="answer_c">C</string>
     <string name="answer_d">D</string>
     <string name="answer_e">E</string>
+    <string name="total_point_key">Skorun :</string>
+    <string name="finish_quiz">Geri Dön</string>
+
+
 
 
     <!-- Admin Page -->
@@ -43,5 +47,10 @@
     <!-- Send QuestionRequest -->
     <string name="upload_button">Soruyu Gönder</string>
     <string name="upload_text">Sorunu Yükle</string>
+
+    <!-- Send QuestionRequest -->
+    <string name="solved_questions">Çözdüğüm Sorular</string>
+    <string name="answer_questions">Soruları Cevapla</string>
+
 
 </resources>

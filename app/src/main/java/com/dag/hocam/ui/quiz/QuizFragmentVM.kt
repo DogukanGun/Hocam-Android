@@ -1,6 +1,7 @@
 package com.dag.hocam.ui.quiz
 
 import com.dag.hocam.application.HocamVM
+import com.dag.hocam.data.quiz.CompleteQuizRequest
 import com.dag.hocam.data.quiz.QuestionResponse
 import com.dag.hocam.data.quiz.Quiz
 import com.dag.hocam.network.ApiSource
@@ -19,7 +20,7 @@ class QuizFragmentVM @Inject constructor(
         apiSource.getQuizzesByName(quizName)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
-            .subscribe(object :Observer<List<QuestionResponse>>{
+            .subscribe(object: Observer<List<QuestionResponse>>{
                 override fun onSubscribe(d: Disposable) {
                 }
 
@@ -32,6 +33,24 @@ class QuizFragmentVM @Inject constructor(
 
                 override fun onComplete() {
                 }
+
+            })
+    }
+
+    fun finishQuiz(completeQuizRequest: CompleteQuizRequest){
+        apiSource.completeQuiz(completeQuizRequest)
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.io())
+            .subscribe(object: Observer<CompleteQuizRequest>{
+                override fun onSubscribe(d: Disposable) {  }
+
+                override fun onNext(t: CompleteQuizRequest) {
+                    state.postValue(QuizResultFragmentVS.FinishQuiz)
+                }
+
+                override fun onError(e: Throwable) { }
+
+                override fun onComplete() { }
 
             })
     }

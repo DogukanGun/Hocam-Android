@@ -8,6 +8,9 @@ import com.dag.hocam.ui.home.HomeActivity
 import com.dag.hocam.ui.home.HomeFragment
 import com.dag.hocam.ui.quiz.QuizActivity
 import com.dag.hocam.ui.quiz.QuizFragment
+import com.dag.hocam.ui.quiz.QuizResultFragment
+import com.dag.hocam.ui.settings.SettingsActivity
+import com.dag.hocam.ui.settings.SettingsFragment
 import com.dag.hocam.ui.splash.SplashActivity
 import com.dag.hocam.ui.topic.TopicActivity
 import com.dag.hocam.ui.topic.TopicFragment
@@ -61,4 +64,13 @@ abstract class ActivityBuilder {
 
     @ContributesAndroidInjector(modules = [ViewModelModule::class])
     abstract fun provideAdminAddQuizFragment(): AdminAddQuizFragment
+
+    @ContributesAndroidInjector(modules = [ViewModelModule::class])
+    abstract fun provideQuizResultFragment(): QuizResultFragment
+
+    @ContributesAndroidInjector(modules = [ViewModelModule::class])
+    abstract fun provideSettingsFragment(): SettingsFragment
+
+    @ContributesAndroidInjector(modules = [ViewModelModule::class])
+    abstract fun provideSettingsActivity(): SettingsActivity
 }

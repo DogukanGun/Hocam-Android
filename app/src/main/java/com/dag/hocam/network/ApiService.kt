@@ -1,6 +1,7 @@
 package com.dag.hocam.network
 
 import com.dag.hocam.application.Constant
+import com.dag.hocam.data.questionfromuser.AddQuestionFromUserRequest
 import com.dag.hocam.data.quiz.*
 import com.dag.hocam.data.subject.AddExampleQuestionRequest
 import com.dag.hocam.data.subject.AddSubjectRequest
@@ -20,46 +21,61 @@ import retrofit2.http.Path
 interface ApiService {
 
     @POST("add/topic")
-     fun addTopic(@Body addTopicRequest: AddTopicRequest): Observable<TopicResponse>
+    fun addTopic(@Body addTopicRequest: AddTopicRequest): Observable<TopicResponse>
 
     @POST("add/subject")
-     fun addSubject(@Body addSubjectRequest: AddSubjectRequest): Observable<AddSubjectRequest>
+    fun addSubject(@Body addSubjectRequest: AddSubjectRequest): Observable<AddSubjectRequest>
 
     @POST("add/quiz")
-     fun addQuiz(@Body addQuizRequest: AddQuizRequest): Observable<AddQuizResponse>
+    fun addQuiz(@Body addQuizRequest: AddQuizRequest): Observable<AddQuizResponse>
 
     @POST("add/question")
-     fun addQuestion(@Body addQuestionRequest: AddQuestionRequest)
+    fun addQuestion(@Body addQuestionRequest: AddQuestionRequest)
+
+    @POST("questionfromuser/add")
+    fun addQuestionFromUser(@Body questionFromUserRequest: AddQuestionFromUserRequest):
+            Observable<AddQuestionFromUserRequest>
 
     @POST("topic/all")
     fun getAllTopics(): Observable<List<GetAllTopicResponse>>
 
     @POST("topic/all/{name}")
-     fun getAllTopicsByName(@Path("name") name: String): Observable<GetAllTopicResponse>
+    fun getAllTopicsByName(@Path("name") name: String): Observable<GetAllTopicResponse>
 
     @POST("quiz/getAll")
-     fun getAllQuizzes(): Observable<List<Quiz>>
+    fun getAllQuizzes(): Observable<List<Quiz>>
 
     @POST("quiz/question/complete/quiz")
-     fun completeQuiz(completeQuizRequest: CompleteQuizRequest): Observable<CompleteQuizRequest>
+    fun completeQuiz(@Body completeQuizRequest: CompleteQuizRequest): Observable<CompleteQuizRequest>
 
     @POST("quiz/question/getAll/{quizName}")
-     fun getQuizzesByName(@Path("quizName") quizName: String): Observable<List<QuestionResponse>>
+    fun getQuizzesByName(@Path("quizName") quizName: String): Observable<List<QuestionResponse>>
 
     @POST("auth/login")
-     fun login(@Body loginRequest: LoginRequest): Observable<AuthenticationResponse>
+    fun login(@Body loginRequest: LoginRequest): Observable<AuthenticationResponse>
 
     @POST("auth/register")
-     fun register(@Body registerRequest: RegisterRequest): Observable<AuthenticationResponse>
+    fun register(@Body registerRequest: RegisterRequest): Observable<AuthenticationResponse>
 
     @POST("subject/subject/all")
-     fun getAllSubject(): Observable<List<AddSubjectRequest>>
+    fun getAllSubject(): Observable<List<AddSubjectRequest>>
 
     @POST("subject/subjectbyname/{subjectName}")
-     fun getAllSubjectByName(@Path("subjectName") name: String): Observable<List<AddSubjectRequest>>
+    fun getAllSubjectByName(@Path("subjectName") name: String): Observable<List<AddSubjectRequest>>
 
     @POST("subject/question/{subjectName}")
-     fun getAllSubjectQuestionsBySubjectName(@Path("subjectName") name: String):
+    fun getAllSubjectQuestionsBySubjectName(@Path("subjectName") name: String):
             Observable<List<AddExampleQuestionRequest>>
 
+    @POST("questionfromuser/solve/question")
+    fun solveQuestion(@Body questionFromUserRequest: AddQuestionFromUserRequest):
+            Observable<AddQuestionFromUserRequest>
+
+    @POST("questionfromuser/get/id/{questionId}")
+    fun getQuestionFromUser(@Path("questionId") questionId: Int):
+            Observable<AddQuestionFromUserRequest>
+
+    @POST("questionfromuser/get/all")
+    fun getAllQuestionFromUser():
+            Observable<List<AddQuestionFromUserRequest>>
 }

@@ -5,6 +5,7 @@ import android.widget.Toast
 import com.dag.hocam.R
 import com.dag.hocam.application.HocamActivity
 import com.dag.hocam.application.IntentConstant
+import com.dag.hocam.data.quiz.Quiz
 import com.dag.hocam.databinding.ActivityQuizBinding
 import javax.inject.Inject
 
@@ -18,9 +19,12 @@ class QuizActivity: HocamActivity<QuizActivityVM,ActivityQuizBinding>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        intent.getStringExtra(IntentConstant.QUIZ_NAME.name)?.let {
-            addFragment(QuizFragment.getInstance(it))
+        safeLet(intent.getStringExtra(IntentConstant.QUIZ_NAME.name),
+            intent.getIntExtra(IntentConstant.QUIZ_ID.name,0)){ quizName,quizId ->
+            val quiz = Quiz(quizId,quizName, emptyList())
+            addFragment(QuizFragment.getInstance(quiz))
         }
+
     }
 
     override fun onBackPressed() {

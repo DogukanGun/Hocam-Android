@@ -34,6 +34,7 @@ class TopicFragmentVM @Inject constructor(
                 }
 
                 override fun onError(e: Throwable) {
+                    state.postValue(TopicFragmentVS.Error)
                 }
 
                 override fun onComplete() {
@@ -55,6 +56,7 @@ class TopicFragmentVM @Inject constructor(
                 }
 
                 override fun onError(e: Throwable) {
+                    state.postValue(TopicFragmentVS.Error)
                 }
 
                 override fun onComplete() {

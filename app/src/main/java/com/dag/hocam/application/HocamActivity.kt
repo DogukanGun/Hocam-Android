@@ -11,8 +11,10 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import com.dag.hocam.BR
 import com.dag.hocam.R
+import com.dag.hocam.data.animation.AnimationType
 import com.dag.hocam.data.session.SessionKey
 import com.dag.hocam.ui.admin.AdminActivity
+import com.dag.hocam.ui.settings.SettingsActivity
 import dagger.android.AndroidInjection
 import javax.inject.Inject
 
@@ -35,6 +37,8 @@ abstract class HocamActivity<VM:HocamVM,DB: ViewDataBinding>:AppCompatActivity()
     protected var viewModel:VM? = null
     protected var binding:DB? = null
     private var nextButtonListener:View.OnClickListener? = null
+    private var progressShowing = false
+    private var progressDialog:HocamProgressDialog? = null
 
     @Inject
     lateinit var sessionManager: HocamSessionManager
@@ -108,7 +112,7 @@ abstract class HocamActivity<VM:HocamVM,DB: ViewDataBinding>:AppCompatActivity()
     }
 
     private var settingButtonListener = View.OnClickListener{
-        //setting activity çalıştır
+        startActivity(SettingsActivity::class.java)
     }
 
     fun setNextButtonListener(nextButtonListener:View.OnClickListener){
@@ -135,5 +139,36 @@ abstract class HocamActivity<VM:HocamVM,DB: ViewDataBinding>:AppCompatActivity()
 
     open fun onStateChange(state:HocamVS){
 
+    }
+
+    fun showError(){
+
+    }
+
+    fun showErrorProgress(){
+        progressDialog?.dismiss()
+        progressDialog = HocamProgressDialog(this,AnimationType.ERROR)
+        progressDialog?.show()
+        progressDialog?.listener = object :HocamProgressDialog.HocamAnimationListener{
+            override fun finishAnimation() {
+                progressDialog?.dismiss()
+            }
+        }
+    }
+
+    fun showProgress(){
+        if (progressShowing){
+            progressShowing = false
+            progressDialog?.dismiss()
+        }else{
+            progressShowing = true
+            progressDialog = HocamProgressDialog(this)
+            progressDialog?.show()
+        }
+    }
+
+
+    inline fun <T1: Any, T2: Any, R: Any> safeLet(p1: T1?, p2: T2?, block: (T1, T2)->R?): R? {
+        return if (p1 != null && p2 != null) block(p1, p2) else null
     }
 }

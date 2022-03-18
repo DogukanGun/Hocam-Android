@@ -6,5 +6,5 @@ object Constant {
     const val hostUrl = "https://hocam.azurewebsites.net/"
     var token = ""
     val quizQuestionPoint = 20
-    var url = localUrl
+    var url = hostUrl
 }

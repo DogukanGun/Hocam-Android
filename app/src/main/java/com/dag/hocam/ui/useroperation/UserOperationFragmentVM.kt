@@ -63,13 +63,16 @@ class UserOperationFragmentVM @Inject constructor(
                             var userType = ""
                             t.data?.userType?.let { userType = it }
                             Constant.token = token
+                            var username = ""
+                            t.data?.username?.let { username = it }
                             sessionManager.putData(SessionKey.TOKEN.name,token)
                             sessionManager.putData(SessionKey.USERTYPE.name,userType)
+                            sessionManager.putData(SessionKey.USERNAME.name,username)
                             state.postValue(UserOperationFragmentVS.StartApplication)
                         }
                     }
-
                     override fun onError(e: Throwable) {
+                        state.postValue(UserOperationFragmentVS.Error)
                     }
 
                     override fun onComplete() {

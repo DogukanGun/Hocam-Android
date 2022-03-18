@@ -44,7 +44,11 @@ class UserOperationFragment: HocamFragment<UserOperationFragmentVM,FragmentUserO
                 login()
             }
             UserOperationFragmentVS.StartApplication ->{
+                showProgress()
                 startActivity(HomeActivity::class.java)
+            }
+            UserOperationFragmentVS.Error ->{
+                showErrorProgress()
             }
         }
     }
@@ -69,6 +73,7 @@ class UserOperationFragment: HocamFragment<UserOperationFragmentVM,FragmentUserO
     }
 
     private val operationDoneButtonListener = View.OnClickListener {
+        showProgress()
         if (userOperationType == UserOperationType.LOGIN){
             login()
         }else{

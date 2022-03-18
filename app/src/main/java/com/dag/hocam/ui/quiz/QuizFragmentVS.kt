@@ -6,4 +6,5 @@ import com.dag.hocam.data.quiz.Quiz
 
 sealed class QuizFragmentVS: HocamVS {
     class SetQuestions(val questionList:List<QuestionResponse>): QuizFragmentVS()
+    object Error: QuizResultFragmentVS()
 }

@@ -6,4 +6,5 @@ sealed class UserOperationFragmentVS: HocamVS {
 
     object Login: UserOperationFragmentVS()
     object StartApplication: UserOperationFragmentVS()
+    object Error: UserOperationFragmentVS()
 }

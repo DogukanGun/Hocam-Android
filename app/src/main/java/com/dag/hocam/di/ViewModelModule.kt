@@ -10,6 +10,8 @@ import com.dag.hocam.ui.home.HomeActivityVM
 import com.dag.hocam.ui.home.HomeFragmentVM
 import com.dag.hocam.ui.quiz.QuizActivityVM
 import com.dag.hocam.ui.quiz.QuizFragmentVM
+import com.dag.hocam.ui.settings.SettingsActivityVM
+import com.dag.hocam.ui.settings.SettingsFragmentVM
 import com.dag.hocam.ui.splash.SplashVM
 import com.dag.hocam.ui.topic.TopicActivityVM
 import com.dag.hocam.ui.topic.TopicFragmentVM
@@ -32,7 +34,7 @@ class ViewModelModule {
     fun provideAskQuestionActivityVM() = AskQuestionActivityVM()
 
     @Provides
-    fun provideAskQuestionFragmentVM() = AskQuestionFragmentVM()
+    fun provideAskQuestionFragmentVM(apiSource: ApiSource) = AskQuestionFragmentVM(apiSource)
 
     @Provides
     fun provideHomeFragmentVM() = HomeFragmentVM()
@@ -61,4 +63,12 @@ class ViewModelModule {
 
     @Provides
     fun provideAdminFragmentVM(apiSource: ApiSource) = AdminFragmentVM(apiSource)
+
+    @Provides
+    fun provideSettingsFragmentVM(apiSource: ApiSource) = SettingsFragmentVM()
+
+    @Provides
+    fun provideSettingActivityVM() = SettingsActivityVM()
+
+
 }

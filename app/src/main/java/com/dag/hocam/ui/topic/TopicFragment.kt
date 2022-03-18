@@ -1,5 +1,6 @@
 package com.dag.hocam.ui.topic
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -47,6 +48,7 @@ class TopicFragment: HocamFragment<TopicFragmentVM,FragmentTopicBinding>() {
         savedInstanceState: Bundle?
     ): View? {
         val view = super.onCreateView(inflater, container, savedInstanceState)
+        showProgress()
         viewModel?.getTopics()
         arguments?.getString(IntentConstant.TOPIC_PATH.name,TopicPath.QUIZ.name)?.let {
             topicPath = TopicPath.valueOf(it)
@@ -57,10 +59,15 @@ class TopicFragment: HocamFragment<TopicFragmentVM,FragmentTopicBinding>() {
     override fun onStateChange(state: HocamVS) {
         when(state){
             is TopicFragmentVS.SetTopic ->{
-              setTopicAdapter(state.topicList)
+                showProgress()
+                setTopicAdapter(state.topicList)
             }
             is TopicFragmentVS.SetQuizzes ->{
+                showProgress()
                 setQuizAdapter(state.quizList)
+            }
+            TopicFragmentVS.Error ->{
+                showErrorProgress()
             }
         }
     }
@@ -76,7 +83,10 @@ class TopicFragment: HocamFragment<TopicFragmentVM,FragmentTopicBinding>() {
 
     private val quizListener = object : QuizListener {
         override fun quizClicked(quiz: Quiz) {
-            startActivityWithArgument(QuizActivity::class.java,IntentConstant.QUIZ_NAME.name,quiz.quizName)
+            val intent = Intent(requireContext(),QuizActivity::class.java)
+            intent.putExtra(IntentConstant.QUIZ_NAME.name,quiz.quizName)
+            intent.putExtra(IntentConstant.QUIZ_ID.name,quiz.id)
+            startActivity(intent)
         }
     }
 
@@ -93,10 +103,12 @@ class TopicFragment: HocamFragment<TopicFragmentVM,FragmentTopicBinding>() {
     val topicRecyclerViewListener = object :TopicListener{
         override fun topicClicked(topic: TopicResponse) {
             if (topicPath == TopicPath.QUIZ){
+                showProgress()
                 viewModel?.getQuizzes()
             }else if (topicPath == TopicPath.SUBJECT){
                 //add subject
             }
         }
     }
+
 }

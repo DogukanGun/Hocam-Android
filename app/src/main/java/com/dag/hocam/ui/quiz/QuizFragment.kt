@@ -15,6 +15,7 @@ import com.dag.hocam.application.HocamVS
 import com.dag.hocam.application.IntentConstant
 import com.dag.hocam.data.quiz.Options
 import com.dag.hocam.data.quiz.QuestionResponse
+import com.dag.hocam.data.quiz.Quiz
 import com.dag.hocam.databinding.FragmentQuizBinding
 import javax.inject.Inject
 
@@ -34,12 +35,14 @@ class QuizFragment: HocamFragment<QuizFragmentVM, FragmentQuizBinding>() {
     private var selectedAnswer:Options? = null
     private var isAnswerSelected = false
     private var questionNumber = 0
+    private var quiz:Quiz? = null
 
     companion object{
-        fun getInstance(quizName:String):QuizFragment{
+        fun getInstance(quiz:Quiz):QuizFragment{
             return QuizFragment().apply {
                 arguments = Bundle().apply {
-                    putString(IntentConstant.QUIZ_NAME.name,quizName)
+                    putString(IntentConstant.QUIZ_NAME.name,quiz.quizName)
+                    putInt(IntentConstant.QUIZ_ID.name,quiz.id)
                 }
             }
         }
@@ -53,8 +56,11 @@ class QuizFragment: HocamFragment<QuizFragmentVM, FragmentQuizBinding>() {
         val view = super.onCreateView(inflater, container, savedInstanceState)
         setNextButtonListener(nextButtonListener)
         setActionBar()
-        arguments?.getString(IntentConstant.QUIZ_NAME.name,"")?.let {
-            viewModel?.getQuizQuestions(it)
+        safeLet(arguments?.getString(IntentConstant.QUIZ_NAME.name),
+            arguments?.getInt(IntentConstant.QUIZ_ID.name)){ quizName,quizId ->
+            showProgress()
+            viewModel?.getQuizQuestions(quizName)
+            quiz = Quiz(quizId,quizName, emptyList())
         }
         binding?.let {
             it.answerABTN.setOnClickListener(answerButtonsListener)
@@ -147,10 +153,10 @@ class QuizFragment: HocamFragment<QuizFragmentVM, FragmentQuizBinding>() {
             notChooseButton(it.answerDBTN)
             notChooseButton(it.answerEBTN)
             selectedAnswer = null
-            it.totalPointTV.text = totalPoint.toString()
             questionNumber+=1
+            it.totalPointTV.text = "Toplam puan: ${totalPoint} / Soru: ${questionNumber} "
             isAnswerSelected = false
-            if (questionList.size < questionNumber)
+            if (questionList.size > questionNumber)
                 startQuiz()
             else
                 finishQuiz()
@@ -158,7 +164,9 @@ class QuizFragment: HocamFragment<QuizFragmentVM, FragmentQuizBinding>() {
     }
 
     private fun finishQuiz(){
-
+        quiz?.id?.let {
+            addFragment(QuizResultFragment.getInstance(totalPoint,it))
+        }
     }
 
     private fun startQuiz(){
@@ -169,8 +177,12 @@ class QuizFragment: HocamFragment<QuizFragmentVM, FragmentQuizBinding>() {
     override fun onStateChange(state: HocamVS) {
         when(state){
             is QuizFragmentVS.SetQuestions ->{
+                showProgress()
                 questionList = state.questionList
                 startQuiz()
+            }
+            QuizFragmentVS.Error ->{
+                showErrorProgress()
             }
         }
     }

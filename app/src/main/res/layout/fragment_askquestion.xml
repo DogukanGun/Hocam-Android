@@ -5,45 +5,56 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/imageViewIV"
-        android:layout_width="0dp"
-        android:layout_height="300dp"
-        android:layout_marginStart="@dimen/marginSmall"
-        android:layout_marginTop="@dimen/marginMedium"
-        android:layout_marginEnd="@dimen/marginSmall"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <EditText
+            android:id="@+id/senderEmailET"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/marginMedium"
+            android:layout_marginTop="@dimen/marginMedium"
+            android:layout_marginEnd="@dimen/marginMedium"
+            android:ems="10"
+            android:hint="@string/email"
+            android:inputType="textEmailAddress"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/uploadTextTV"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:text="@string/upload_text"
-        android:textColor="@color/black"
-        android:textSize="@dimen/textLargeSize"
-        android:gravity="center"
-        app:layout_constraintBottom_toBottomOf="@+id/imageViewIV"
-        app:layout_constraintEnd_toEndOf="@+id/imageViewIV"
-        app:layout_constraintStart_toStartOf="@+id/imageViewIV"
-        app:layout_constraintTop_toTopOf="@+id/imageViewIV" />
+        <TextView
+            android:id="@+id/uploadTextTV"
+            android:text="@string/upload_text"
+            android:textColor="@color/light_blue_600"
+            android:textSize="@dimen/textMediumSize"
+            android:gravity="center"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/questionIV"
+            app:layout_constraintEnd_toEndOf="@+id/questionIV"
+            app:layout_constraintStart_toStartOf="@+id/questionIV"
+            app:layout_constraintTop_toTopOf="@+id/questionIV" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/uploadBTN"
-        style="@style/StandartButton"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/upload_button"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="@dimen/marginSmall"
-        android:layout_marginEnd="@dimen/marginSmall"
-        android:layout_marginTop="@dimen/marginSmall"
-        android:layout_marginStart="@dimen/marginSmall"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewIV" />
+        <ImageView
+            android:id="@+id/questionIV"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/marginMedium"
+            android:layout_marginBottom="@dimen/marginMedium"
+            app:layout_constraintBottom_toTopOf="@+id/submitBTN"
+            app:layout_constraintEnd_toEndOf="@+id/senderEmailET"
+            app:layout_constraintStart_toStartOf="@+id/senderEmailET"
+            app:layout_constraintTop_toBottomOf="@+id/senderEmailET"
+            android:src="@drawable/ic_baseline_ask_question"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            style="@style/StandartButton"
+            android:id="@+id/submitBTN"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/marginMedium"
+            android:text="@string/sendquestion_button"
+            app:layout_constraintEnd_toEndOf="@+id/questionIV"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/questionIV"
+            app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

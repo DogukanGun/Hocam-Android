@@ -13,15 +13,21 @@
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.1421875" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.29010416666666666" />
         <entry key="app/src/main/res/layout/activity_quiz.xml" value="0.29010416666666666" />
+        <entry key="app/src/main/res/layout/activity_settings.xml" value="0.290625" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.1421875" />
         <entry key="app/src/main/res/layout/activity_topic.xml" value="0.29010416666666666" />
         <entry key="app/src/main/res/layout/activity_user_operation.xml" value="0.29010416666666666" />
         <entry key="app/src/main/res/layout/bottom_navigation.xml" value="0.15572916666666667" />
+        <entry key="app/src/main/res/layout/component_hocam_progress_dialog.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/component_upload_question_from_user.xml" value="0.290625" />
         <entry key="app/src/main/res/layout/fragment_admin.xml" value="0.29010416666666666" />
         <entry key="app/src/main/res/layout/fragment_admin_add_quiz.xml" value="0.29010416666666666" />
         <entry key="app/src/main/res/layout/fragment_askquestion.xml" value="0.29010416666666666" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_quiz.xml" value="0.29010416666666666" />
+        <entry key="app/src/main/res/layout/fragment_quiz_result.xml" value="0.290625" />
+        <entry key="app/src/main/res/layout/fragment_quiz_result_fragment.xml" value="0.290625" />
+        <entry key="app/src/main/res/layout/fragment_settings.xml" value="0.290625" />
         <entry key="app/src/main/res/layout/fragment_topic.xml" value="0.29010416666666666" />
         <entry key="app/src/main/res/layout/fragment_user_operation.xml" value="0.29010416666666666" />
         <entry key="app/src/main/res/layout/item_add_quiz.xml" value="0.29010416666666666" />
