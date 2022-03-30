@@ -28,11 +28,6 @@ class AdminActivity: HocamActivity<AdminActivityVM,ActivityAdminBinding>() {
     }
 
     override fun onBackPressed() {
-        val fragmentTransaction = supportFragmentManager.beginTransaction()
-        fragmentTransaction.remove(currentFragment)
-        fragmentTransaction.commitAllowingStateLoss()
-        supportFragmentManager.popBackStackImmediate()
-        currentFragment = AdminFragment()
-        addFragment(currentFragment)
+      //prevent code smell
     }
 }

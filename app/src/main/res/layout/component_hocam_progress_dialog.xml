@@ -24,5 +24,4 @@
         app:lottie_speed="1"
         tools:ignore="ContentDescription"/>
 
-
 </androidx.constraintlayout.widget.ConstraintLayout>

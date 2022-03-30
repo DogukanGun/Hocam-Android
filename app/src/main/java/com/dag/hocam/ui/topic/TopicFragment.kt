@@ -11,6 +11,7 @@ import com.dag.hocam.R
 import com.dag.hocam.application.HocamFragment
 import com.dag.hocam.application.HocamVS
 import com.dag.hocam.application.IntentConstant
+import com.dag.hocam.data.quiz.GetQuizRequest
 import com.dag.hocam.data.quiz.Quiz
 import com.dag.hocam.data.topic.TopicPath
 import com.dag.hocam.data.topic.TopicResponse
@@ -54,6 +55,11 @@ class TopicFragment: HocamFragment<TopicFragmentVM,FragmentTopicBinding>() {
             topicPath = TopicPath.valueOf(it)
         }
         return view
+    }
+
+    fun refresh(){
+        showProgress()
+        viewModel?.getTopics()
     }
 
     override fun onStateChange(state: HocamVS) {
@@ -116,11 +122,13 @@ class TopicFragment: HocamFragment<TopicFragmentVM,FragmentTopicBinding>() {
         override fun topicClicked(topic: TopicResponse) {
             if (topicPath == TopicPath.QUIZ){
                 showProgress()
-                viewModel?.getQuizzes()
+                viewModel?.getQuizzes(GetQuizRequest(topic.id,true))
             }else if (topicPath == TopicPath.SUBJECT){
                 viewModel?.getSubjects()
             }
         }
     }
+
+
 
 }

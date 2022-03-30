@@ -30,8 +30,8 @@ class ApiServiceImpl @Inject constructor(retrofit:Retrofit): ApiSource {
         return apiService.addQuiz(addQuizRequest)
     }
 
-    override  fun addQuestion(addQuestionRequest: AddQuestionRequest) {
-        apiService.addQuestion(addQuestionRequest)
+    override  fun addQuestion(addQuestionRequest: List<AddQuestionRequest>): Observable<List<AddQuestionRequest>> {
+        return apiService.addQuestion(addQuestionRequest)
     }
 
     override  fun getAllTopics(): Observable<List<GetAllTopicResponse>> {
@@ -42,16 +42,16 @@ class ApiServiceImpl @Inject constructor(retrofit:Retrofit): ApiSource {
         return apiService.getAllTopicsByName(name)
     }
 
-    override  fun getAllQuizzes(): Observable<List<Quiz>> {
-        return apiService.getAllQuizzes()
+    override  fun getAllQuizzes(getQuizRequest: GetQuizRequest): Observable<List<Quiz>> {
+        return apiService.getAllQuizzes(getQuizRequest)
     }
 
     override  fun completeQuiz(completeQuizRequest: CompleteQuizRequest): Observable<CompleteQuizRequest> {
         return apiService.completeQuiz(completeQuizRequest)
     }
 
-    override  fun getQuizzesByName(quizName: String): Observable<List<QuestionResponse>> {
-        return apiService.getQuizzesByName(quizName)
+    override  fun getQuizzesByName(getQuestionByQuiz: GetQuestionByQuiz): Observable<List<QuestionResponse>> {
+        return apiService.getQuizzesByName(getQuestionByQuiz)
     }
 
     override  fun login(loginRequest: LoginRequest): Observable<AuthenticationResponse> {
@@ -92,6 +92,10 @@ class ApiServiceImpl @Inject constructor(retrofit:Retrofit): ApiSource {
 
     override fun getAllSolvedQuizzes(username: String): Observable<List<SolvedQuizResponse>> {
         return apiService.getAllSolvedQuizzes(username)
+    }
+
+    override fun getAllQuizzesByTopic(getQuizRequest: GetQuizRequest): Observable<List<Quiz>> {
+        return apiService.getAllQuizzesByTopic(getQuizRequest)
     }
 
 }

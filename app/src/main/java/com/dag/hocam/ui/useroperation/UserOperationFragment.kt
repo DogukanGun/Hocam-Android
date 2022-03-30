@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.dag.hocam.R
+import com.dag.hocam.application.Constant
 import com.dag.hocam.application.HocamFragment
 import com.dag.hocam.application.HocamVS
 import com.dag.hocam.data.user.LoginRequest
@@ -45,12 +46,18 @@ class UserOperationFragment: HocamFragment<UserOperationFragmentVM,FragmentUserO
             }
             UserOperationFragmentVS.StartApplication ->{
                 showProgress()
-                startActivity(HomeActivity::class.java)
+                startApplication()
             }
             UserOperationFragmentVS.Error ->{
                 showErrorProgress()
             }
         }
+    }
+
+    private fun startApplication(){
+        Constant.loggedIn = true
+        finishActivity()
+        startActivity(HomeActivity::class.java)
     }
 
     private val changeOperationButtonListener = View.OnClickListener {

@@ -11,7 +11,33 @@
         android:id="@+id/addQuiz"
         android:layout_width="0dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addTopic"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="@dimen/marginMedium"
+        android:layout_marginStart="@dimen/marginMedium"
+        android:layout_marginEnd="@dimen/marginMedium"
+        android:layout_height="wrap_content"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/addTopic"
+        style="@style/StandartButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/marginMedium"
+        android:layout_marginTop="@dimen/marginMedium"
+        android:layout_marginEnd="@dimen/marginMedium"
+        android:text="@string/add_topic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        style="@style/StandartButton"
+        android:text="@string/add_question"
+        android:id="@+id/addQuestion"
+        android:layout_width="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addQuiz"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="@dimen/marginMedium"
         android:layout_marginStart="@dimen/marginMedium"
@@ -24,12 +50,10 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/marginMedium"
-        android:layout_marginBottom="485dp"
         android:text="@string/add_subject"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/addQuiz"
         app:layout_constraintStart_toStartOf="@+id/addQuiz"
-        app:layout_constraintTop_toBottomOf="@+id/addQuiz" />
+        app:layout_constraintTop_toBottomOf="@+id/addQuestion" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

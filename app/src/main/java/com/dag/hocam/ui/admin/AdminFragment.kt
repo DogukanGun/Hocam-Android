@@ -7,6 +7,9 @@ import android.view.ViewGroup
 import com.dag.hocam.R
 import com.dag.hocam.application.HocamFragment
 import com.dag.hocam.databinding.FragmentAdminBinding
+import com.dag.hocam.ui.admin.question.AdminAddQuestionFragment
+import com.dag.hocam.ui.admin.quiz.AdminAddQuizFragment
+import com.dag.hocam.ui.admin.topic.AddTopicFragment
 import javax.inject.Inject
 
 class AdminFragment: HocamFragment<AdminFragmentVM,FragmentAdminBinding>() {
@@ -25,8 +28,14 @@ class AdminFragment: HocamFragment<AdminFragmentVM,FragmentAdminBinding>() {
     ): View? {
         val view =  super.onCreateView(inflater, container, savedInstanceState)
         binding?.apply {
+            this.addTopic.setOnClickListener {
+                addFragment(AddTopicFragment())
+            }
             this.addQuiz.setOnClickListener {
                 addFragment(AdminAddQuizFragment())
+            }
+            this.addQuestion.setOnClickListener{
+                addFragment(AdminAddQuestionFragment())
             }
             this.addSubject.setOnClickListener {
 

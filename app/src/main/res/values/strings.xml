@@ -27,6 +27,8 @@
 
     <!-- Admin Page -->
     <string name="add_quiz">Quiz Ekle</string>
+    <string name="add_topic">Konu Ekle</string>
+    <string name="add_question">Soru Ekle</string>
     <string name="quiz_name">Quiz İsmi</string>
     <string name="add_subject">Konu Ekle</string>
 

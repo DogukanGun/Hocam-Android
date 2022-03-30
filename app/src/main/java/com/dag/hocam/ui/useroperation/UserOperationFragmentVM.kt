@@ -40,6 +40,7 @@ class UserOperationFragmentVM @Inject constructor(
                     }
 
                     override fun onError(e: Throwable) {
+                        state.postValue(UserOperationFragmentVS.Error)
                     }
 
                     override fun onComplete() {

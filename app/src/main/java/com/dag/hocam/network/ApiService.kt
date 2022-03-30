@@ -29,7 +29,7 @@ interface ApiService {
     fun addQuiz(@Body addQuizRequest: AddQuizRequest): Observable<AddQuizResponse>
 
     @POST("add/question")
-    fun addQuestion(@Body addQuestionRequest: AddQuestionRequest)
+    fun addQuestion(@Body addQuestionRequest: List<AddQuestionRequest>): Observable<List<AddQuestionRequest>>
 
     @POST("questionfromuser/add")
     fun addQuestionFromUser(@Body questionFromUserRequest: AddQuestionFromUserRequest):
@@ -41,14 +41,17 @@ interface ApiService {
     @POST("topic/all/{name}")
     fun getAllTopicsByName(@Path("name") name: String): Observable<GetAllTopicResponse>
 
-    @POST("quiz/getAll")
-    fun getAllQuizzes(): Observable<List<Quiz>>
+    @POST("quiz/get/all")
+    fun getAllQuizzes(@Body getQuizRequest: GetQuizRequest): Observable<List<Quiz>>
+
+    @POST("quiz/quiz/getby/topic")
+    fun getAllQuizzesByTopic(@Body getQuizRequest: GetQuizRequest): Observable<List<Quiz>>
 
     @POST("quiz/question/complete/quiz")
     fun completeQuiz(@Body completeQuizRequest: CompleteQuizRequest): Observable<CompleteQuizRequest>
 
-    @POST("quiz/question/getAll/{quizName}")
-    fun getQuizzesByName(@Path("quizName") quizName: String): Observable<List<QuestionResponse>>
+    @POST("quiz/question/getAll")
+    fun getQuizzesByName(@Body getQuestionByQuiz: GetQuestionByQuiz): Observable<List<QuestionResponse>>
 
     @POST("auth/login")
     fun login(@Body loginRequest: LoginRequest): Observable<AuthenticationResponse>

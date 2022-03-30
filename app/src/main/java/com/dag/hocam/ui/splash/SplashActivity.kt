@@ -26,6 +26,7 @@ class SplashActivity: HocamActivity<SplashVM,ActivitySplashBinding>() {
     override fun onStateChange(state: HocamVS) {
         when(state){
             SplashVS.StartApplication ->{
+                finish()
                 startActivity(UserOperationActivity::class.java)
             }
         }

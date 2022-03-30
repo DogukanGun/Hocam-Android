@@ -2,6 +2,7 @@ package com.dag.hocam.ui.quiz
 
 import com.dag.hocam.application.HocamVM
 import com.dag.hocam.data.quiz.CompleteQuizRequest
+import com.dag.hocam.data.quiz.GetQuestionByQuiz
 import com.dag.hocam.data.quiz.QuestionResponse
 import com.dag.hocam.data.quiz.Quiz
 import com.dag.hocam.network.ApiSource
@@ -16,8 +17,8 @@ class QuizFragmentVM @Inject constructor(
     val apiSource: ApiSource
 ): HocamVM() {
 
-    fun getQuizQuestions(quizName:String){
-        apiSource.getQuizzesByName(quizName)
+    fun getQuizQuestions(getQuestionByQuiz: GetQuestionByQuiz){
+        apiSource.getQuizzesByName(getQuestionByQuiz)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
             .subscribe(object: Observer<List<QuestionResponse>>{

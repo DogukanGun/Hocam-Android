@@ -13,6 +13,7 @@ import com.dag.hocam.application.Constant
 import com.dag.hocam.application.HocamFragment
 import com.dag.hocam.application.HocamVS
 import com.dag.hocam.application.IntentConstant
+import com.dag.hocam.data.quiz.GetQuestionByQuiz
 import com.dag.hocam.data.quiz.Options
 import com.dag.hocam.data.quiz.QuestionResponse
 import com.dag.hocam.data.quiz.Quiz
@@ -59,7 +60,8 @@ class QuizFragment: HocamFragment<QuizFragmentVM, FragmentQuizBinding>() {
         safeLet(arguments?.getString(IntentConstant.QUIZ_NAME.name),
             arguments?.getInt(IntentConstant.QUIZ_ID.name)){ quizName,quizId ->
             showProgress()
-            viewModel?.getQuizQuestions(quizName)
+            val getQuestionByQuiz = GetQuestionByQuiz(quizName,15,true)
+            viewModel?.getQuizQuestions(getQuestionByQuiz)
             quiz = Quiz(quizId,quizName, emptyList())
         }
         binding?.let {

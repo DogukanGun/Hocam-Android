@@ -1,6 +1,7 @@
 package com.dag.hocam.ui.topic
 
 import com.dag.hocam.application.HocamVM
+import com.dag.hocam.data.quiz.GetQuizRequest
 import com.dag.hocam.data.quiz.Quiz
 import com.dag.hocam.data.topic.GetAllTopicResponse
 import com.dag.hocam.data.topic.TopicResponse
@@ -47,8 +48,8 @@ class TopicFragmentVM @Inject constructor(
         state.postValue(TopicFragmentVS.Soon)
     }
 
-    fun getQuizzes(){
-        apiSource.getAllQuizzes()
+    fun getQuizzes(getQuizRequest: GetQuizRequest){
+        apiSource.getAllQuizzesByTopic(getQuizRequest)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
             .subscribe(object :Observer<List<Quiz>>{

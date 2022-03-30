@@ -24,17 +24,17 @@ interface ApiSource {
 
      fun addQuiz(addQuizRequest: AddQuizRequest): Observable<AddQuizResponse>
 
-     fun addQuestion(addQuestionRequest: AddQuestionRequest)
+     fun addQuestion(addQuestionRequest: List<AddQuestionRequest>): Observable<List<AddQuestionRequest>>
 
      fun getAllTopics(): Observable<List<GetAllTopicResponse>>
 
      fun getAllTopicsByName(name: String): Observable<GetAllTopicResponse>
 
-     fun getAllQuizzes(): Observable<List<Quiz>>
+     fun getAllQuizzes(getQuizRequest: GetQuizRequest): Observable<List<Quiz>>
 
      fun completeQuiz(completeQuizRequest: CompleteQuizRequest): Observable<CompleteQuizRequest>
 
-     fun getQuizzesByName(quizName: String): Observable<List<QuestionResponse>>
+     fun getQuizzesByName(getQuestionByQuiz: GetQuestionByQuiz): Observable<List<QuestionResponse>>
 
      fun login(loginRequest: LoginRequest): Observable<AuthenticationResponse>
 
@@ -60,4 +60,6 @@ interface ApiSource {
 
      fun getAllSolvedQuizzes(username: String):
              Observable<List<SolvedQuizResponse>>
+
+     fun getAllQuizzesByTopic( getQuizRequest: GetQuizRequest): Observable<List<Quiz>>
 }

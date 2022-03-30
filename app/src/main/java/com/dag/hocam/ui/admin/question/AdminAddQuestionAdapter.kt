@@ -1,10 +1,8 @@
-package com.dag.hocam.ui.admin
+package com.dag.hocam.ui.admin.question
 
-import android.R.attr.bitmap
 import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Bitmap
-import android.graphics.drawable.BitmapDrawable
 import android.util.Base64
 import android.view.LayoutInflater
 import android.view.View
@@ -13,7 +11,6 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.ImageView
 import androidx.core.content.ContextCompat
-import androidx.core.graphics.drawable.toBitmap
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
@@ -21,11 +18,8 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.dag.hocam.R
-import com.dag.hocam.data.quiz.AddQuestionRequest
-import com.dag.hocam.data.quiz.AddQuizRequest
 import com.dag.hocam.data.quiz.QuestionResponse
 import com.dag.hocam.databinding.ItemAddQuizBinding
-import com.squareup.picasso.Picasso
 import java.io.ByteArrayOutputStream
 
 
@@ -36,7 +30,7 @@ class AdminAddQuizAdapter(var questionList:List<QuestionResponse>, val context: 
         fun imageClicked(quizId:Int)
     }
 
-    var listener:AdminAddQuizAdapterListener? = null
+    var listener: AdminAddQuizAdapterListener? = null
     inner class AdminAddQuizViewHolder(val binding:ItemAddQuizBinding):RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AdminAddQuizViewHolder {

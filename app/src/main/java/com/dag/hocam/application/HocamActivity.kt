@@ -48,6 +48,9 @@ abstract class HocamActivity<VM:HocamVM,DB: ViewDataBinding>:AppCompatActivity()
     lateinit var sessionManager: HocamSessionManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        if (Constant.loggedIn && Constant.token.length < 2){
+            finishAndRemoveTask()
+        }
         AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         viewModel = getLayoutVM()

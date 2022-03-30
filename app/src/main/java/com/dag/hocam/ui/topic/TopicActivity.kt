@@ -15,8 +15,14 @@ class TopicActivity: HocamActivity<TopicActivityVM,ActivityTopicBinding>() {
     @Inject
     lateinit var topicActivityVM: TopicActivityVM
 
+    val topicFragment = TopicFragment()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        addFragment(TopicFragment())
+        addFragment(topicFragment)
+    }
+
+    override fun onBackPressed() {
+        topicFragment.refresh()
     }
 }

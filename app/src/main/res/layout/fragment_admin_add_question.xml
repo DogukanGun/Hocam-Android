@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/topicTitleTV"
+        android:layout_width="60dp"
+        android:textColor="@color/black"
+        android:gravity="left|center_vertical"
+        android:layout_height="0dp"
+        android:text="@string/topic_header"
+        android:layout_marginStart="@dimen/marginSmall"
+        app:layout_constraintBottom_toBottomOf="@+id/topicSpinnerS"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/topicSpinnerS" />
+    <Spinner
+        android:id="@+id/topicSpinnerS"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="55dp"
+        android:layout_marginEnd="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/topicTitleTV"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <TextView
+        android:id="@+id/quizNameTitleTV"
+        android:layout_width="60dp"
+        android:textColor="@color/black"
+        android:gravity="left|center_vertical"
+        android:layout_height="0dp"
+        android:text="@string/quiz_name"
+        android:layout_marginStart="@dimen/marginSmall"
+        app:layout_constraintBottom_toBottomOf="@+id/quizSpinnerS"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/quizSpinnerS" />
+    <Spinner
+        android:id="@+id/quizSpinnerS"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/marginSmall"
+        android:hint="@string/quiz_name"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/topicSpinnerS"
+        app:layout_constraintStart_toEndOf="@+id/quizNameTitleTV"
+        app:layout_constraintTop_toBottomOf="@+id/topicSpinnerS" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/questionListRV"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="@dimen/marginSmall"
+        android:layout_marginTop="@dimen/marginSmall"
+        android:layout_marginEnd="@dimen/marginSmall"
+        android:layout_marginBottom="@dimen/marginSmall"
+        app:layout_constraintBottom_toTopOf="@+id/addQuizBTN"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/quizSpinnerS" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        style="@style/StandartButton"
+        android:id="@+id/addQuizBTN"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="@string/add_quiz"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="@dimen/marginSmall"
+        android:layout_marginStart="@dimen/marginSmall"
+        android:layout_marginEnd="@dimen/marginSmall"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

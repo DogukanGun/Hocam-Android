@@ -1,4 +1,4 @@
-package com.dag.hocam.ui.admin
+package com.dag.hocam.ui.admin.question
 
 import android.net.Uri
 import android.os.Bundle
@@ -11,22 +11,20 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.dag.hocam.R
 import com.dag.hocam.application.HocamFragment
 import com.dag.hocam.application.HocamVS
-import com.dag.hocam.data.quiz.AddQuestionRequest
-import com.dag.hocam.data.quiz.AddQuizRequest
-import com.dag.hocam.data.quiz.QuestionResponse
-import com.dag.hocam.data.quiz.Quiz
+import com.dag.hocam.data.quiz.*
 import com.dag.hocam.data.topic.TopicResponse
+import com.dag.hocam.databinding.FragmentAdminAddQuestionBinding
 import com.dag.hocam.databinding.FragmentAdminAddQuizBinding
-import com.squareup.picasso.Picasso
+import com.dag.hocam.ui.admin.AdminFragmentVM
+import com.dag.hocam.ui.admin.AdminFragmentVS
 import javax.inject.Inject
 
-class AdminAddQuizFragment: HocamFragment<AdminFragmentVM,FragmentAdminAddQuizBinding>() {
+class AdminAddQuestionFragment: HocamFragment<AdminFragmentVM,FragmentAdminAddQuestionBinding>() {
 
-    override fun getLayoutId(): Int = R.layout.fragment_admin_add_quiz
+    override fun getLayoutId(): Int = R.layout.fragment_admin_add_question
 
     override fun getLayoutVM(): AdminFragmentVM = adminFragmentVM
 
@@ -38,6 +36,7 @@ class AdminAddQuizFragment: HocamFragment<AdminFragmentVM,FragmentAdminAddQuizBi
 
     var questionList = mutableListOf<QuestionResponse>()
     var selectedQuestionId = 0
+    var selectedQuiz = Quiz(0,"", emptyList())
     var selectedTopic = 0
 
     override fun onCreateView(
@@ -65,17 +64,15 @@ class AdminAddQuizFragment: HocamFragment<AdminFragmentVM,FragmentAdminAddQuizBi
 
     private val submitButtonListener = View.OnClickListener {
         val questionList = adapter.questionList
-        var requestList = mutableListOf<AddQuestionRequest>()
+        val requestList = mutableListOf<AddQuestionRequest>()
         for (question in questionList){
             requestList.add(AddQuestionRequest(question.question,question.correctAnswer,0))
         }
-        val addQuizRequest = AddQuizRequest(binding?.editTextTextPersonName?.text.toString(),
-            selectedTopic, requestList)
         showProgress()
-        viewModel?.addQuiz(addQuizRequest)
+        viewModel?.addQuestion(requestList.toList())
     }
 
-    private val adapterListener = object :AdminAddQuizAdapter.AdminAddQuizAdapterListener{
+    private val adapterListener = object : AdminAddQuizAdapter.AdminAddQuizAdapterListener {
         override fun imageClicked(quizId:Int) {
             selectedQuestionId = quizId
             getContent.launch("image/*")
@@ -83,7 +80,7 @@ class AdminAddQuizFragment: HocamFragment<AdminFragmentVM,FragmentAdminAddQuizBi
     }
 
     private fun createListForRV(){
-        for (index in 0 until 12){
+        for (index in 0 until 15){
             questionList.add(QuestionResponse("","","",""))
         }
     }
@@ -95,31 +92,55 @@ class AdminAddQuizFragment: HocamFragment<AdminFragmentVM,FragmentAdminAddQuizBi
         }
     }
 
+    private fun setQuiz(){
+        val getQuizRequestBody = GetQuizRequest(selectedQuestionId,false)
+        viewModel?.getAllQuizzes(getQuizRequestBody)
+    }
+
     private fun setTopic(topicList:List<TopicResponse>){
         val newList = topicList.map { it.topicName }
-        binding?.spinner?.adapter = ArrayAdapter(requireContext(),android.R.layout.simple_spinner_item,newList)
-        binding?.spinner?.onItemSelectedListener = object :AdapterView.OnItemSelectedListener{
+        binding?.topicSpinnerS?.adapter = ArrayAdapter(requireContext(),android.R.layout.simple_spinner_item,newList)
+        binding?.topicSpinnerS?.onItemSelectedListener = object :AdapterView.OnItemSelectedListener{
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
                 selectedTopic = topicList[p2].id
+                setQuiz()
             }
             override fun onNothingSelected(p0: AdapterView<*>?) {
                 selectedTopic = topicList[0].id
+                setQuiz()
+            }
+        }
+    }
+
+    private fun setQuizSpinnerAdapter(quizList:List<Quiz>){
+        val newList = quizList.map { it.quizName }
+        binding?.quizSpinnerS?.adapter = ArrayAdapter(requireContext(),android.R.layout.simple_spinner_item,newList)
+        binding?.quizSpinnerS?.onItemSelectedListener = object :AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+                selectedQuiz = quizList[p2]
+            }
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+                selectedQuiz = quizList[0]
             }
         }
     }
 
     override fun onStateChange(state: HocamVS) {
         when(state){
-            is AdminAddQuizFragmentVS.SetTopic ->{
+            is AdminFragmentVS.SetTopic ->{
                 showProgress()
                 setTopic(state.topicList)
             }
-            AdminAddQuizFragmentVS.QuizAdded ->{
+            AdminAddQuestionFragmentVS.QuestionAdded ->{
                 showProgress()
                 finishActivity()
             }
-            AdminAddQuizFragmentVS.Error ->{
+            AdminAddQuestionFragmentVS.Error ->{
                 showErrorProgress()
+            }
+            is AdminAddQuestionFragmentVS.SetQuiz ->{
+                showProgress()
+                setQuizSpinnerAdapter(state.quizList)
             }
         }
     }

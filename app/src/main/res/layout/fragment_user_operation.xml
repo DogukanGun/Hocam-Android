@@ -75,12 +75,13 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/marginSmall"
-        android:backgroundTint="@color/white"
-        android:padding="0dp"
         android:background="@android:color/transparent"
-
+        android:backgroundTint="@color/white"
         android:elevation="0dp"
+
         android:gravity="start|center_vertical"
+        android:keyboardNavigationCluster="true"
+        android:padding="0dp"
         android:text="@string/change_to_register"
         android:textColor="@color/black"
         android:textSize="@dimen/textSmallSize"
