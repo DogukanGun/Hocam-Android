@@ -1,12 +1,11 @@
 package com.dag.hocam.ui.quiz
 
 import com.dag.hocam.application.HocamVM
-import com.dag.hocam.data.quiz.CompleteQuizRequest
-import com.dag.hocam.data.quiz.GetQuestionByQuiz
-import com.dag.hocam.data.quiz.QuestionResponse
-import com.dag.hocam.data.quiz.Quiz
+import com.dag.hocam.data.quiz.*
 import com.dag.hocam.network.ApiSource
-import io.reactivex.Observable
+import com.dag.hocam.ui.quiz.quizfail.QuizFailVS
+import com.dag.hocam.ui.quiz.quizresult.QuizFragmentVS
+import com.dag.hocam.ui.quiz.quizresult.QuizResultFragmentVS
 import io.reactivex.Observer
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
@@ -35,6 +34,27 @@ class QuizFragmentVM @Inject constructor(
                 override fun onComplete() {
                 }
 
+            })
+    }
+
+    fun completeQuestions(completeQuestionRequest: CompleteQuestionRequest){
+        apiSource.completeQuestion(completeQuestionRequest)
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.io())
+            .subscribe(object: Observer<List<CompleteQuestionResponse>>{
+                override fun onSubscribe(d: Disposable) {}
+
+                override fun onNext(t: List<CompleteQuestionResponse>) {
+                    if (t.isNotEmpty()){
+                        state.postValue(QuizFailVS.QuizCompleted)
+                    }
+                }
+
+                override fun onError(e: Throwable) {
+                    state.postValue(QuizFailVS.Error)
+                }
+
+                override fun onComplete() {}
             })
     }
 

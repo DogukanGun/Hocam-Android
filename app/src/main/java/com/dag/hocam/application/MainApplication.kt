@@ -1,4 +1,6 @@
 package com.dag.hocam.application
 
-class MainApplication: BaseApplication() {
-}
+import com.google.android.gms.ads.MobileAds
+
+
+class MainApplication: BaseApplication() {}

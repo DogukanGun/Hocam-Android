@@ -1,5 +1,6 @@
 package com.dag.hocam.ui.quiz
 
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.widget.Toast
 import com.dag.hocam.R
@@ -7,7 +8,12 @@ import com.dag.hocam.application.HocamActivity
 import com.dag.hocam.application.IntentConstant
 import com.dag.hocam.data.quiz.Quiz
 import com.dag.hocam.databinding.ActivityQuizBinding
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.LoadAdError
+import com.google.android.gms.ads.interstitial.InterstitialAd
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import javax.inject.Inject
+
 
 class QuizActivity: HocamActivity<QuizActivityVM,ActivityQuizBinding>() {
     override fun getLayoutId(): Int = R.layout.activity_quiz
@@ -24,7 +30,6 @@ class QuizActivity: HocamActivity<QuizActivityVM,ActivityQuizBinding>() {
             val quiz = Quiz(quizId,quizName, emptyList())
             addFragment(QuizFragment.getInstance(quiz))
         }
-
     }
 
     override fun onBackPressed() {

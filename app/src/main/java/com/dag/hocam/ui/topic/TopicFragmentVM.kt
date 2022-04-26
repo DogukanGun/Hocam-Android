@@ -6,7 +6,6 @@ import com.dag.hocam.data.quiz.Quiz
 import com.dag.hocam.data.topic.GetAllTopicResponse
 import com.dag.hocam.data.topic.TopicResponse
 import com.dag.hocam.network.ApiSource
-import com.dag.hocam.ui.quiz.QuizFragmentVS
 import io.reactivex.Observer
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable

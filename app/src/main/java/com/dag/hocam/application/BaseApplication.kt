@@ -2,6 +2,7 @@ package com.dag.hocam.application
 
 import android.app.Application
 import com.dag.hocam.di.DaggerAppComponent
+import com.google.android.gms.ads.MobileAds
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasAndroidInjector

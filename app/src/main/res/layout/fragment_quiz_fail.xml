@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/animationLAV"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/marginMedium"
+            android:layout_marginTop="@dimen/marginMedium"
+            android:layout_marginEnd="@dimen/marginMedium"
+            android:adjustViewBounds="true"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:lottie_fileName="animation/loading-failed.json"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_speed="1"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/errorTitleTV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/marginMedium"
+            android:gravity="center"
+            android:text="@string/question_failed"
+            app:layout_constraintEnd_toEndOf="@+id/animationLAV"
+            app:layout_constraintStart_toStartOf="@+id/animationLAV"
+            app:layout_constraintTop_toBottomOf="@+id/animationLAV" />
+
+        <ImageButton
+            android:id="@+id/repeatIB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/closeIB"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/closeIB"
+            app:layout_constraintTop_toTopOf="@+id/closeIB"
+            app:tint="@color/primary_color"
+            android:padding="@dimen/paddingMedium"
+            android:background="@color/white"
+            app:srcCompat="@drawable/ic_baseline_replay" />
+
+        <ImageButton
+            android:id="@+id/closeIB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/marginMedium"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/repeatIB"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:tint="@color/primary_color"
+            android:padding="@dimen/paddingMedium"
+            android:background="@color/white"
+            app:srcCompat="@drawable/ic_baseline_close" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

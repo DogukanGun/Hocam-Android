@@ -50,6 +50,9 @@ interface ApiService {
     @POST("quiz/question/complete/quiz")
     fun completeQuiz(@Body completeQuizRequest: CompleteQuizRequest): Observable<CompleteQuizRequest>
 
+    @POST("quiz/question/complete/question")
+    fun completeQuestion(@Body completeQuestionRequest: CompleteQuestionRequest): Observable<List<CompleteQuestionResponse>>
+
     @POST("quiz/question/getAll")
     fun getQuizzesByName(@Body getQuestionByQuiz: GetQuestionByQuiz): Observable<List<QuestionResponse>>
 

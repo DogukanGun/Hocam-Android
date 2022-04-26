@@ -54,5 +54,9 @@
     <string name="solved_questions">Çözdüğüm Sınavlar</string>
     <string name="answer_questions">Soruları Cevapla</string>
 
+    <!-- Failed Question -->
+    <string name="question_failed">Yanlış cevap verdiniz</string>
+
+
 
 </resources>

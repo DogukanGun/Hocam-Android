@@ -1,6 +1,7 @@
 package com.dag.hocam.application
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -64,7 +65,7 @@ abstract class HocamFragment<VM:HocamVM,DB:ViewDataBinding>:Fragment() {
         viewModel = getLayoutVM()
     }
 
-    private fun getHocamActivity():HocamActivity<*,*>?{
+    fun getHocamActivity():HocamActivity<*,*>?{
         activity?.let {
             return it as HocamActivity<*,*>
         }
@@ -87,12 +88,20 @@ abstract class HocamFragment<VM:HocamVM,DB:ViewDataBinding>:Fragment() {
         getHocamActivity()?.addFragment(fragment)
     }
 
+    fun replaceFragment(fragment: HocamFragment<*,*>){
+        getHocamActivity()?.replaceFragment(fragment)
+    }
+
     fun startActivity(classAI:Class<*>){
         getHocamActivity()?.startActivity(classAI)
     }
 
     open fun onStateChange(state:HocamVS){
 
+    }
+
+    fun finishActivityWithResult(intent: Intent){
+        getHocamActivity()?.finishActivityWithResult(intent)
     }
 
     fun showErrorProgress(){

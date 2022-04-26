@@ -1,4 +1,4 @@
-package com.dag.hocam.ui.quiz
+package com.dag.hocam.ui.quiz.quizresult
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,10 +10,10 @@ import com.dag.hocam.application.HocamSessionManager
 import com.dag.hocam.application.HocamVS
 import com.dag.hocam.application.IntentConstant
 import com.dag.hocam.data.quiz.CompleteQuizRequest
-import com.dag.hocam.data.quiz.Quiz
 import com.dag.hocam.data.session.SessionKey
 import com.dag.hocam.databinding.FragmentQuizResultBinding
 import com.dag.hocam.ui.home.HomeActivity
+import com.dag.hocam.ui.quiz.QuizFragmentVM
 import javax.inject.Inject
 
 class QuizResultFragment: HocamFragment<QuizFragmentVM,FragmentQuizResultBinding>() {
@@ -31,7 +31,7 @@ class QuizResultFragment: HocamFragment<QuizFragmentVM,FragmentQuizResultBinding
     private var quizId = 0
 
     companion object{
-        fun getInstance(totalPoint:Int,quizId:Int):QuizResultFragment{
+        fun getInstance(totalPoint:Int,quizId:Int): QuizResultFragment {
             return QuizResultFragment().apply {
                 arguments = Bundle().also {
                     it.putInt(IntentConstant.TOTAL_POINT.name,totalPoint)

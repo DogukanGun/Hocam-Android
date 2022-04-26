@@ -34,6 +34,8 @@ interface ApiSource {
 
      fun completeQuiz(completeQuizRequest: CompleteQuizRequest): Observable<CompleteQuizRequest>
 
+     fun completeQuestion( completeQuestionRequest: CompleteQuestionRequest): Observable<List<CompleteQuestionResponse>>
+
      fun getQuizzesByName(getQuestionByQuiz: GetQuestionByQuiz): Observable<List<QuestionResponse>>
 
      fun login(loginRequest: LoginRequest): Observable<AuthenticationResponse>

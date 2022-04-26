@@ -10,7 +10,9 @@ import com.dag.hocam.ui.home.HomeActivity
 import com.dag.hocam.ui.home.HomeFragment
 import com.dag.hocam.ui.quiz.QuizActivity
 import com.dag.hocam.ui.quiz.QuizFragment
-import com.dag.hocam.ui.quiz.QuizResultFragment
+import com.dag.hocam.ui.quiz.quizfail.QuizFailActivity
+import com.dag.hocam.ui.quiz.quizfail.QuizFailFragment
+import com.dag.hocam.ui.quiz.quizresult.QuizResultFragment
 import com.dag.hocam.ui.settings.SettingsActivity
 import com.dag.hocam.ui.settings.SettingsFragment
 import com.dag.hocam.ui.settings.SettingsQuizNotAnsweredQuestion
@@ -84,4 +86,10 @@ abstract class ActivityBuilder {
 
     @ContributesAndroidInjector(modules = [ViewModelModule::class])
     abstract fun provideAddTopicFragment(): AddTopicFragment
+
+    @ContributesAndroidInjector(modules = [ViewModelModule::class])
+    abstract fun provideQuizFailFragment(): QuizFailFragment
+
+    @ContributesAndroidInjector(modules = [ViewModelModule::class])
+    abstract fun provideQuizFailActivity(): QuizFailActivity
 }

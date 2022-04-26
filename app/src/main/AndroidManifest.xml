@@ -13,6 +13,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Hocam">
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-9467075561345800~7618193425"/>
         <activity
             android:name=".ui.splash.SplashActivity"
             android:exported="true">
@@ -24,6 +27,9 @@
         <activity
             android:exported="true"
             android:name=".ui.home.HomeActivity"/>
+        <activity
+            android:exported="true"
+            android:name=".ui.quiz.quizfail.QuizFailActivity"/>
         <activity
             android:exported="true"
             android:name=".ui.askquestion.AskQuestionActivity"/>

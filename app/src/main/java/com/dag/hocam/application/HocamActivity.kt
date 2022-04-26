@@ -1,5 +1,6 @@
 package com.dag.hocam.application
 
+import android.app.Activity
 import android.content.Intent
 import android.media.Image
 import android.os.Bundle
@@ -139,6 +140,18 @@ abstract class HocamActivity<VM:HocamVM,DB: ViewDataBinding>:AppCompatActivity()
         fragmentTransaction.addToBackStack(null)
         fragmentTransaction.replace(getContainerId(),fragment,null)
         fragmentTransaction.commitAllowingStateLoss()
+    }
+
+    fun replaceFragment(fragment: HocamFragment<*,*>){
+        val fragmentTransaction = supportFragmentManager.beginTransaction()
+        getCurrentFragment()?.let { fragmentTransaction.remove(it) }
+        fragmentTransaction.replace(getContainerId(),fragment,null)
+        fragmentTransaction.commitAllowingStateLoss()
+    }
+
+    fun finishActivityWithResult(intent: Intent){
+        setResult(Activity.RESULT_OK,intent)
+        finish()
     }
 
     fun startActivity(classAI:Class<*>){

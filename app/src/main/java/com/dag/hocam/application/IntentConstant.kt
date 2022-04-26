@@ -4,5 +4,6 @@ enum class IntentConstant {
     TOPIC_PATH,
     QUIZ_NAME,
     QUIZ_ID,
-    TOTAL_POINT
+    TOTAL_POINT,
+    COMPETED_QUESTION
 }

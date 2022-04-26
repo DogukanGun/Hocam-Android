@@ -6,6 +6,7 @@
         <entry key="app/src/main/res/drawable-v24/bg_button.xml" value="0.122" />
         <entry key="app/src/main/res/drawable-v24/bg_secondary_button.xml" value="0.122" />
         <entry key="app/src/main/res/drawable/ic_baseline_home.xml" value="0.1615" />
+        <entry key="app/src/main/res/drawable/ic_baseline_replay.xml" value="0.1615" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.1615" />
         <entry key="app/src/main/res/layout/action_bar.xml" value="0.29010416666666666" />
         <entry key="app/src/main/res/layout/activity_admin.xml" value="0.29010416666666666" />
@@ -13,6 +14,7 @@
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.1421875" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.29010416666666666" />
         <entry key="app/src/main/res/layout/activity_quiz.xml" value="0.26929982046678635" />
+        <entry key="app/src/main/res/layout/activity_quiz_fail.xml" value="0.2911458333333333" />
         <entry key="app/src/main/res/layout/activity_settings.xml" value="0.290625" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.1421875" />
         <entry key="app/src/main/res/layout/activity_topic.xml" value="0.29010416666666666" />
@@ -27,6 +29,7 @@
         <entry key="app/src/main/res/layout/fragment_askquestion.xml" value="0.29010416666666666" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_quiz.xml" value="0.29010416666666666" />
+        <entry key="app/src/main/res/layout/fragment_quiz_fail.xml" value="0.2911458333333333" />
         <entry key="app/src/main/res/layout/fragment_quiz_result.xml" value="0.290625" />
         <entry key="app/src/main/res/layout/fragment_quiz_result_fragment.xml" value="0.290625" />
         <entry key="app/src/main/res/layout/fragment_settings.xml" value="0.290625" />

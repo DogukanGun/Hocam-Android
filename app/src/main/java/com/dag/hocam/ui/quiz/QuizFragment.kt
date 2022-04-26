@@ -1,23 +1,26 @@
 package com.dag.hocam.ui.quiz
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.util.Base64
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.widget.AppCompatButton
 import com.bumptech.glide.Glide
 import com.dag.hocam.R
-import com.dag.hocam.application.Constant
-import com.dag.hocam.application.HocamFragment
-import com.dag.hocam.application.HocamVS
-import com.dag.hocam.application.IntentConstant
-import com.dag.hocam.data.quiz.GetQuestionByQuiz
-import com.dag.hocam.data.quiz.Options
-import com.dag.hocam.data.quiz.QuestionResponse
-import com.dag.hocam.data.quiz.Quiz
+import com.dag.hocam.application.*
+import com.dag.hocam.data.quiz.*
+import com.dag.hocam.data.session.SessionKey
 import com.dag.hocam.databinding.FragmentQuizBinding
+import com.dag.hocam.ui.quiz.quizfail.QuizFailActivity
+import com.dag.hocam.ui.quiz.quizfail.QuizFailFragment
+import com.dag.hocam.ui.quiz.quizresult.QuizFragmentVS
+import com.dag.hocam.ui.quiz.quizresult.QuizResultFragment
 import javax.inject.Inject
 
 class QuizFragment: HocamFragment<QuizFragmentVM, FragmentQuizBinding>() {
@@ -27,8 +30,13 @@ class QuizFragment: HocamFragment<QuizFragmentVM, FragmentQuizBinding>() {
 
     override fun hasNextButton(): Boolean = true
 
+    lateinit var activityResultLauncher: ActivityResultLauncher<Intent>
+
     @Inject
     lateinit var quizFragmentVM: QuizFragmentVM
+
+    @Inject
+    lateinit var sessionManager: HocamSessionManager
 
     private lateinit var questionList: List<QuestionResponse>
 
@@ -57,13 +65,7 @@ class QuizFragment: HocamFragment<QuizFragmentVM, FragmentQuizBinding>() {
         val view = super.onCreateView(inflater, container, savedInstanceState)
         setNextButtonListener(nextButtonListener)
         setActionBar()
-        safeLet(arguments?.getString(IntentConstant.QUIZ_NAME.name),
-            arguments?.getInt(IntentConstant.QUIZ_ID.name)){ quizName,quizId ->
-            showProgress()
-            val getQuestionByQuiz = GetQuestionByQuiz(quizName,15,true)
-            viewModel?.getQuizQuestions(getQuestionByQuiz)
-            quiz = Quiz(quizId,quizName, emptyList())
-        }
+        getQuiz()
         binding?.let {
             it.answerABTN.setOnClickListener(answerButtonsListener)
             it.answerBBTN.setOnClickListener(answerButtonsListener)
@@ -71,7 +73,18 @@ class QuizFragment: HocamFragment<QuizFragmentVM, FragmentQuizBinding>() {
             it.answerDBTN.setOnClickListener(answerButtonsListener)
             it.answerEBTN.setOnClickListener(answerButtonsListener)
         }
+        createActivityResultLauncher()
         return view
+    }
+
+    private fun getQuiz(){
+        safeLet(arguments?.getString(IntentConstant.QUIZ_NAME.name),
+            arguments?.getInt(IntentConstant.QUIZ_ID.name)){ quizName,quizId ->
+            showProgress()
+            val getQuestionByQuiz = GetQuestionByQuiz(quizName,15,true)
+            viewModel?.getQuizQuestions(getQuestionByQuiz)
+            quiz = Quiz(quizId,quizName, emptyList())
+        }
     }
 
     private fun chooseButton(button: AppCompatButton){
@@ -132,15 +145,34 @@ class QuizFragment: HocamFragment<QuizFragmentVM, FragmentQuizBinding>() {
         }
     }
 
+    private fun createActivityResultLauncher(){
+        activityResultLauncher = registerForActivityResult(
+            ActivityResultContracts.StartActivityForResult()
+        ){
+            if (it.resultCode == Activity.RESULT_OK){
+                getQuiz()
+            }else{
+                finishActivity()
+            }
+        }
+    }
+
     private val nextButtonListener = View.OnClickListener {
         if (isAnswerSelected){
             selectedAnswer?.let {
                 if (it.name.lowercase() == questionList[questionNumber].correctAnswer.lowercase()){
                     totalPoint += Constant.quizQuestionPoint
+                    nextQuestion()
                 }else{
-                    Toast.makeText(requireContext(),R.string.quiz_wrong_answer_error_message,Toast.LENGTH_LONG).show()
+                    safeLet(sessionManager.getData<String>(SessionKey.USERNAME.name),quiz?.id){ username,quizId ->
+                        val completeQuestionRequest = CompleteQuestionRequest(username,quizId,questionList.slice(IntRange(0,questionNumber)).map { it.id.toInt() })
+                        val intent = Intent(requireContext(),QuizFailActivity::class.java).also {
+                            it.putExtra(IntentConstant.COMPETED_QUESTION.name,completeQuestionRequest)
+                        }
+                        activityResultLauncher.launch(intent)
+                    }
                 }
-                nextQuestion()
+
             }
         }else{
             Toast.makeText(requireContext(),R.string.quiz_next_button_error_message,Toast.LENGTH_LONG).show()

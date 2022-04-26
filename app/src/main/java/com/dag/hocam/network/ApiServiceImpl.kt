@@ -50,6 +50,10 @@ class ApiServiceImpl @Inject constructor(retrofit:Retrofit): ApiSource {
         return apiService.completeQuiz(completeQuizRequest)
     }
 
+    override fun completeQuestion(completeQuestionRequest: CompleteQuestionRequest): Observable<List<CompleteQuestionResponse>> {
+        return apiService.completeQuestion(completeQuestionRequest)
+    }
+
     override  fun getQuizzesByName(getQuestionByQuiz: GetQuestionByQuiz): Observable<List<QuestionResponse>> {
         return apiService.getQuizzesByName(getQuestionByQuiz)
     }
